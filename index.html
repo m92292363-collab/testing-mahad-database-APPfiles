@@ -1163,7 +1163,6 @@
         { title:{en:'Admissions',ar:'القبول'}, category:{en:'Admission',ar:'القبول'}, preview:{en:'Apply now',ar:'قدم الآن'}, tab:'tab3', elementId:'admission-section', keywords:['admission','apply','قبول','تقديم','2026'] },
         { title:{en:'News',ar:'الأخبار'}, category:{en:'News',ar:'أخبار'}, preview:{en:'Latest news',ar:'آخر الأخبار'}, tab:'tab4', elementId:'news-section', keywords:['news','أخبار','graduation','تخرج'] },
         { title:{en:'Student Portal',ar:'بوابة الطالب'}, category:{en:'Login',ar:'دخول'}, preview:{en:'Student login',ar:'تسجيل دخول الطالب'}, tab:'tab5', elementId:'student-login', keywords:['student','login','طالب','دخول','نتائج','results'] },
-        { title:{en:'Admin Portal',ar:'بوابة الإدارة'}, category:{en:'Login',ar:'دخول'}, preview:{en:'Admin login',ar:'تسجيل دخول الإدارة'}, tab:'tab5', elementId:'teacher-login', keywords:['admin','teacher','إدارة','معلم','login'] },
     ];
     function scrollToAndHighlight(elementId) {
         const el = document.getElementById(elementId);
@@ -1185,11 +1184,14 @@
                 document.querySelectorAll('.search-result-item').forEach(item => {
                     item.addEventListener('click', function() {
                         const tabId = this.dataset.tab;
-                        if (tabId && tabId !== 'null') { const tabItem = document.querySelector('.tab-item[data-tab="'+tabId+'"]'); if (tabItem) { tabItem.click(); setTimeout(() => scrollToAndHighlight(this.dataset.element), 100); } } else scrollToAndHighlight(this.dataset.element);
+                        if (tabId) { const tabItem = document.querySelector('.tab-item[data-tab="'+tabId+'"]'); if (tabItem) { tabItem.click(); setTimeout(() => scrollToAndHighlight(this.dataset.element), 100); } }
                         searchInput.value = ''; searchResults.classList.remove('active');
                     });
                 });
-            } else { searchResults.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> '+(lang==='en'?'No results found':'لا توجد نتائج')+'</div>'; searchResults.classList.add('active'); }
+            } else {
+                searchResults.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> '+(lang==='en'?'No results found':'لا توجد نتائج')+'</div>';
+                searchResults.classList.add('active');
+            }
         });
         document.addEventListener('click', e => { if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) searchResults.classList.remove('active'); });
         searchInput.addEventListener('keyup', function() { if (!this.value.trim()) searchResults.classList.remove('active'); });
@@ -1226,7 +1228,6 @@ function toArabicWords(n) {
     if (n<20) return ones[n];
     if (n<100) { const t=Math.floor(n/10),o=n%10; return o?ones[o]+' و'+tens[t]:tens[t]; }
     if (n<1000) { const h=Math.floor(n/100),r=n%100; return r?hundreds[h]+' و'+toArabicWords(r):hundreds[h]; }
-    if (n<10000) { const th=Math.floor(n/1000),r=n%1000; const thStr=th===1?'ألف':th===2?'ألفان':th<11?ones[th]+' آلاف':ones[th]+' ألف'; return r?thStr+' و'+toArabicWords(r):thStr; }
     return n.toString();
 }
 
@@ -1293,7 +1294,7 @@ function showTermReport(term, year) {
     var student = currentStudentData;
     var today = new Date();
     document.getElementById('reportDate').textContent = 'التاريخ: '+today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-    document.getElementById('attestationText').innerHTML = 'تشهد إدارة المعهد الإسلامي ببتلند كنجا بأن الطالب: <strong>'+student.fullName+'</strong> قد نجح في امتحان الدور الأول للعام الدراسي '+year+' وبناء عليه استحق نيل هذه الوثيقة. &nbsp;&nbsp; الفصل: '+termName;
+    document.getElementById('attestationText').innerHTML = 'تشهد إدارة المعهد الإسلامي ببتلند كنجا بأن الطالب: <strong>'+student.fullName+'</strong> قد نجح في امتحان الدور الأول للعام الدراسي '+year+'. الفصل: '+termName;
     var total = results.reduce(function(s,r) { return s+r.score; }, 0);
     var maxTotal = results.length * 100;
     var grade = total>=maxTotal*0.9?'ممتاز':total>=maxTotal*0.75?'جيد جداً':total>=maxTotal*0.6?'جيد':'مقبول';
@@ -1312,77 +1313,17 @@ function showTermReport(term, year) {
 }
 
 function backToTerms() { document.getElementById('reportView').style.display='none'; document.getElementById('termCardsSection').style.display='block'; }
+
 function printReport() {
     var content = document.getElementById('a4Report').innerHTML;
     var win = window.open('','_blank');
-    win.document.write('<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><title>كشف الدرجات</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><style>body{font-family:Arial,sans-serif;margin:0;padding:20px;direction:rtl;}@media print{body{padding:0;margin:0;}@page{size:A4;margin:1.5cm;}}table{width:100%;border-collapse:collapse;font-size:13px;}th,td{border:1px solid #999;padding:5px 8px;}</style></head><body>'+content+'<script>window.onload=function(){window.print();}<\/script>
-<script>
-// Register Service Worker for PWA
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('SW registered'))
-            .catch(err => console.log('SW error:', err));
-    });
-}
-
-// Show install prompt for Android
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    // Show install banner after 3 seconds
-    setTimeout(showInstallBanner, 3000);
-});
-
-function showInstallBanner() {
-    if (!deferredPrompt) return;
-    const banner = document.createElement('div');
-    banner.id = 'pwa-banner';
-    banner.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e5a3a;color:white;padding:0.9rem 1.5rem;border-radius:50px;box-shadow:0 8px 25px rgba(0,0,0,0.3);z-index:9998;display:flex;align-items:center;gap:0.8rem;font-size:0.95rem;font-weight:600;white-space:nowrap;border:2px solid #FFB347;direction:rtl;';
-    banner.innerHTML = '<i class="fas fa-download" style="color:#FFB347;"></i> تثبيت التطبيق على هاتفك <button onclick="installPWA()" style="background:#FFB347;color:#1e2b2f;border:none;padding:0.4rem 1rem;border-radius:30px;font-weight:700;cursor:pointer;margin-right:0.5rem;">تثبيت</button><button onclick="dismissBanner()" style="background:transparent;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:1.2rem;padding:0 0.3rem;">×</button>';
-    document.body.appendChild(banner);
-}
-
-function installPWA() {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-        deferredPrompt = null;
-        dismissBanner();
-    });
-}
-
-function dismissBanner() {
-    const b = document.getElementById('pwa-banner');
-    if (b) b.remove();
-}
-
-window.addEventListener('appinstalled', () => {
-    dismissBanner();
-    deferredPrompt = null;
-});
-</script>
-</body></html>');
+    var html = '<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><title>كشف الدرجات</title>';
+    html += '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">';
+    html += '<style>body{font-family:Arial,sans-serif;margin:0;padding:20px;direction:rtl;}@media print{body{padding:0;margin:0;}@page{size:A4;margin:1.5cm;}}table{width:100%;border-collapse:collapse;font-size:13px;}th,td{border:1px solid #999;padding:5px 8px;}</style>';
+    html += '</head><body>' + content;
+    html += '<scr' + 'ipt>window.onload=function(){window.print();}</' + 'script></body></html>';
+    win.document.write(html);
     win.document.close();
-}
-
-// ===== ADMIN LOGIN =====
-async function adminLogin() {
-    const username = document.getElementById('admin-user-input').value.trim();
-    const password = document.getElementById('admin-pass-input').value.trim();
-    const btn = document.getElementById('adminLoginBtn');
-    const errorEl = document.getElementById('admin-login-error');
-    errorEl.classList.remove('show');
-    if (!username || !password) { errorEl.textContent = 'يرجى إدخال اسم المستخدم وكلمة المرور'; errorEl.classList.add('show'); return; }
-    btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحقق...';
-    try {
-        const res = await fetch('/api/admin-login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({username,password}) });
-        const data = await res.json();
-        if (data.success) { document.getElementById('adminDashboard').classList.add('active'); document.body.style.overflow='hidden'; }
-        else { errorEl.textContent = data.error||'بيانات غير صحيحة'; errorEl.classList.add('show'); }
-    } catch(err) { errorEl.textContent='خطأ في الاتصال. حاول مرة أخرى.'; errorEl.classList.add('show'); }
-    btn.disabled=false; btn.innerHTML='<i class="fas fa-sign-in-alt"></i> تسجيل الدخول';
 }
 
 // ===== LOGOUT =====
@@ -1390,7 +1331,6 @@ function logout(type) {
     document.getElementById(type==='student'?'studentDashboard':'adminDashboard').classList.remove('active');
     document.body.style.overflow = '';
     if (type==='student') { document.getElementById('student-id-input').value=''; document.getElementById('student-pass-input').value=''; }
-    else { document.getElementById('admin-user-input').value=''; document.getElementById('admin-pass-input').value=''; }
 }
 
 // ===== ADMIN TABS =====
@@ -1403,7 +1343,7 @@ function switchAdminTab(tab, btn) {
 
 // ===== SAVE MARKS =====
 async function saveMarks() {
-    const studentId=document.getElementById('marks-studentId').value.trim();
+    const studentId=document.getElementById('marks-studentId').value;
     const subject=document.getElementById('marks-subject').value;
     const score=parseInt(document.getElementById('marks-score').value);
     const grade=document.getElementById('marks-grade').value;
@@ -1412,12 +1352,12 @@ async function saveMarks() {
     const btn=document.getElementById('saveMarksBtn');
     const successEl=document.getElementById('marks-success'), errorEl=document.getElementById('marks-error');
     successEl.classList.remove('show'); errorEl.classList.remove('show');
-    if (!studentId||!subject||!score||!grade||!academicYear||!term) { errorEl.textContent='يرجى ملء جميع الحقول المطلوبة'; errorEl.classList.add('show'); return; }
+    if (!studentId||!subject||isNaN(score)||!grade||!academicYear||!term) { errorEl.textContent='يرجى ملء جميع الحقول المطلوبة'; errorEl.classList.add('show'); return; }
     btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
     try {
         const res=await fetch('/api/add-marks',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({studentId,subject,score,grade,academicYear,term})});
         const data=await res.json();
-        if (data.success) { successEl.classList.add('show'); document.getElementById('marks-studentId').value=''; document.getElementById('marks-subject').value=''; document.getElementById('marks-score').value=''; document.getElementById('marks-grade').value=''; }
+        if (data.success) { successEl.classList.add('show'); document.getElementById('marks-score').value=''; document.getElementById('marks-grade').value=''; }
         else { errorEl.textContent=data.error||'حدث خطأ'; errorEl.classList.add('show'); }
     } catch(err) { errorEl.textContent='خطأ في الاتصال'; errorEl.classList.add('show'); }
     btn.disabled=false; btn.innerHTML='<i class="fas fa-save"></i> حفظ النتيجة';
@@ -1433,12 +1373,12 @@ async function saveStudent() {
     const btn=document.getElementById('saveStudentBtn');
     const successEl=document.getElementById('student-success'), errorEl=document.getElementById('student-error');
     successEl.classList.remove('show'); errorEl.classList.remove('show');
-    if (!studentId||!fullName||!password||!gradeLevel||!className) { errorEl.textContent='يرجى ملء جميع الحقول المطلوبة'; errorEl.classList.add('show'); return; }
+    if (!studentId||!fullName||!password) { errorEl.textContent='يرجى ملء جميع الحقول المطلوبة'; errorEl.classList.add('show'); return; }
     btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الإضافة...';
     try {
         const res=await fetch('/api/add-student',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({studentId,fullName,password,gradeLevel:parseInt(gradeLevel),className})});
         const data=await res.json();
-        if (data.success) { successEl.textContent='تم إضافة الطالب '+fullName+' (الصف '+gradeLevel+' - الفصل '+className+') بنجاح!'; successEl.classList.add('show'); document.getElementById('new-studentId').value=''; document.getElementById('new-fullName').value=''; document.getElementById('new-password').value=''; }
+        if (data.success) { successEl.textContent='تم إضافة الطالب '+fullName+' بنجاح!'; successEl.classList.add('show'); document.getElementById('new-studentId').value=''; document.getElementById('new-fullName').value=''; document.getElementById('new-password').value=''; }
         else { errorEl.textContent=data.error||'حدث خطأ'; errorEl.classList.add('show'); }
     } catch(err) { errorEl.textContent='خطأ في الاتصال'; errorEl.classList.add('show'); }
     btn.disabled=false; btn.innerHTML='<i class="fas fa-user-plus"></i> إضافة الطالب';
@@ -1448,7 +1388,7 @@ async function saveStudent() {
 let allStudentsData = [];
 async function loadAllStudents() {
     const tbody = document.getElementById('allStudentsBody');
-    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:2rem;"><i class="fas fa-spinner fa-spin" style="color:var(--primary-accent);font-size:1.5rem;"></i></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;"><i class="fas fa-spinner fa-spin" style="color:var(--primary-accent);font-size:1.5rem;"></i></td></tr>';
     try {
         const res = await fetch('/api/get-all-students');
         const data = await res.json();
@@ -1456,8 +1396,8 @@ async function loadAllStudents() {
             allStudentsData = data.students;
             document.getElementById('students-count').innerHTML = '<i class="fas fa-users"></i> إجمالي الطلاب: ' + data.students.length;
             renderStudentsTable(data.students);
-        } else { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:2rem;color:#c0392b;">فشل تحميل البيانات</td></tr>'; }
-    } catch(err) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:2rem;color:#c0392b;">خطأ في الاتصال</td></tr>'; }
+        } else { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;color:#c0392b;">فشل تحميل البيانات</td></tr>'; }
+    } catch(err) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;color:#c0392b;">خطأ في الاتصال</td></tr>'; }
 }
 
 function renderStudentsTable(students) {
@@ -1479,7 +1419,6 @@ function filterStudentsTable() {
     renderStudentsTable(filtered);
 }
 
-// Filter students dropdown in add-marks panel
 let cachedStudentsForMarks = [];
 async function filterStudentsByGradeClass() {
     const grade = document.getElementById('marks-grade-filter').value;
@@ -1494,13 +1433,10 @@ async function filterStudentsByGradeClass() {
             cachedStudentsForMarks = data.success ? data.students : [];
         }
         const filtered = cachedStudentsForMarks.filter(s => String(s.grade_level) === grade && s.class_name === cls);
-        if (filtered.length) {
-            select.innerHTML = '<option value="">-- اختر الطالب --</option>' + filtered.map(s => '<option value="'+s.student_id+'">'+s.student_id+' - '+s.full_name+'</option>').join('');
-        } else { select.innerHTML = '<option value="">لا يوجد طلاب في هذا الفصل</option>'; }
+        select.innerHTML = filtered.length ? '<option value="">-- اختر الطالب --</option>' + filtered.map(s => '<option value="'+s.student_id+'">'+s.student_id+' - '+s.full_name+'</option>').join('') : '<option value="">لا يوجد طلاب في هذا الفصل</option>';
     } catch(err) { select.innerHTML = '<option value="">خطأ في التحميل</option>'; }
 }
 
-// ===== UPDATE STUDENT =====
 async function updateStudent() {
     const studentId=document.getElementById('update-studentId').value.trim();
     const fullName=document.getElementById('update-fullName').value.trim()||undefined;
@@ -1513,10 +1449,10 @@ async function updateStudent() {
     if (!fullName && !gradeLevel && !className) { errorEl.textContent='يرجى تعديل حقل واحد على الأقل'; errorEl.classList.add('show'); return; }
     btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
     try {
-        const body = {studentId};
-        if (fullName) body.fullName = fullName;
-        if (gradeLevel) body.gradeLevel = parseInt(gradeLevel);
-        if (className) body.className = className;
+        const body={studentId};
+        if (fullName) body.fullName=fullName;
+        if (gradeLevel) body.gradeLevel=parseInt(gradeLevel);
+        if (className) body.className=className;
         const res=await fetch('/api/update-student',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
         const data=await res.json();
         if (data.success) { successEl.textContent='✅ تم تحديث بيانات الطالب بنجاح!'; successEl.classList.add('show'); document.getElementById('update-studentId').value=''; document.getElementById('update-fullName').value=''; document.getElementById('update-gradeLevel').value=''; document.getElementById('update-className').value=''; }
@@ -1525,25 +1461,23 @@ async function updateStudent() {
     btn.disabled=false; btn.innerHTML='<i class="fas fa-save"></i> حفظ التعديلات';
 }
 
-// ===== DELETE STUDENT =====
 async function deleteStudent() {
     const studentId=document.getElementById('delete-studentId').value.trim();
     const btn=document.getElementById('deleteStudentBtn');
     const successEl=document.getElementById('delete-student-success'), errorEl=document.getElementById('delete-student-error');
     successEl.classList.remove('show'); errorEl.classList.remove('show');
     if (!studentId) { errorEl.textContent='يرجى إدخال رقم الطالب'; errorEl.classList.add('show'); return; }
-    if (!confirm('هل أنت متأكد من حذف الطالب '+studentId+' وجميع نتائجه؟ لا يمكن التراجع!')) return;
+    if (!confirm('هل أنت متأكد من حذف الطالب '+studentId+'؟')) return;
     btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الحذف...';
     try {
         const res=await fetch('/api/delete-student',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({studentId})});
         const data=await res.json();
-        if (data.success) { successEl.textContent='✅ تم حذف الطالب '+studentId+' وجميع نتائجه بنجاح!'; successEl.classList.add('show'); document.getElementById('delete-studentId').value=''; }
+        if (data.success) { successEl.textContent='✅ تم حذف الطالب '+studentId+' بنجاح!'; successEl.classList.add('show'); document.getElementById('delete-studentId').value=''; }
         else { errorEl.textContent=data.error||'حدث خطأ'; errorEl.classList.add('show'); }
     } catch(err) { errorEl.textContent='خطأ في الاتصال'; errorEl.classList.add('show'); }
     btn.disabled=false; btn.innerHTML='<i class="fas fa-trash-alt"></i> حذف الطالب نهائياً';
 }
 
-// ===== LOAD ALL RESULTS =====
 let allResultsData = [];
 async function loadAllResults() {
     const tbody=document.getElementById('allResultsBody');
@@ -1552,39 +1486,33 @@ async function loadAllResults() {
     const year=document.getElementById('filter-year').value.trim();
     const term=document.getElementById('filter-term').value;
     tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:2rem;"><i class="fas fa-spinner fa-spin" style="color:var(--primary-accent);font-size:1.5rem;"></i></td></tr>';
-    let url='/api/get-all-results';
     const params=[];
     if (year) params.push('academicYear='+encodeURIComponent(year));
     if (term) params.push('term='+encodeURIComponent(term));
     if (grade) params.push('gradeLevel='+encodeURIComponent(grade));
     if (cls) params.push('className='+encodeURIComponent(cls));
-    if (params.length) url+='?'+params.join('&');
+    const url='/api/get-all-results'+(params.length?'?'+params.join('&'):'');
     try {
         const res=await fetch(url);
         const data=await res.json();
-        if (data.success) {
-            allResultsData=data.results;
-            document.getElementById('results-count').innerHTML='<i class="fas fa-list"></i> إجمالي النتائج: '+data.results.length;
-            renderResultsTable(data.results);
-        } else { tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:2rem;color:#c0392b;">فشل تحميل البيانات</td></tr>'; }
+        if (data.success) { allResultsData=data.results; document.getElementById('results-count').innerHTML='<i class="fas fa-list"></i> إجمالي النتائج: '+data.results.length; renderResultsTable(data.results); }
+        else { tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:2rem;color:#c0392b;">فشل تحميل البيانات</td></tr>'; }
     } catch(err) { tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:2rem;color:#c0392b;">خطأ في الاتصال</td></tr>'; }
 }
 
 function renderResultsTable(results) {
     const tbody=document.getElementById('allResultsBody');
     if (!results.length) { tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:2rem;color:#999;">لا توجد نتائج</td></tr>'; return; }
-    const gradeColors={'A':'#d4edda','B':'#cce5ff','C':'#fff3cd','D':'#f8d7da','F':'#f8d7da'};
-    const gradeNames={'10':'العاشر','11':'الحادي عشر','12':'الثاني عشر'};
-    tbody.innerHTML=results.map((r,i)=>'<tr><td>'+(i+1)+'</td><td style="font-weight:700;color:var(--islamic-green);">'+r.student_id+'</td><td>'+r.full_name+'</td><td>'+(gradeNames[String(r.grade_level)]||r.grade_level||'-')+'</td><td>'+(r.class_name||'-')+'</td><td>'+r.subject+'</td><td style="font-weight:700;">'+(r.score||'-')+'</td><td><span style="background:'+(gradeColors[r.grade]||'#eee')+';padding:0.2rem 0.6rem;border-radius:20px;font-weight:700;font-size:0.85rem;">'+(r.grade||'-')+'</span></td><td>'+(r.term||'-')+'</td><td>'+(r.academic_year||'-')+'</td></tr>').join('');
+    const gc={'A':'#d4edda','B':'#cce5ff','C':'#fff3cd','D':'#f8d7da','F':'#f8d7da'};
+    const gn={'10':'العاشر','11':'الحادي عشر','12':'الثاني عشر'};
+    tbody.innerHTML=results.map((r,i)=>'<tr><td>'+(i+1)+'</td><td style="font-weight:700;color:var(--islamic-green);">'+r.student_id+'</td><td>'+r.full_name+'</td><td>'+(gn[String(r.grade_level)]||'-')+'</td><td>'+(r.class_name||'-')+'</td><td>'+r.subject+'</td><td style="font-weight:700;">'+(r.score??'-')+'</td><td><span style="background:'+(gc[r.grade]||'#eee')+';padding:0.2rem 0.6rem;border-radius:20px;font-weight:700;font-size:0.85rem;">'+(r.grade||'-')+'</span></td><td>'+(r.term||'-')+'</td><td>'+(r.academic_year||'-')+'</td></tr>').join('');
 }
 
 function filterResultsTable() {
     const q=document.getElementById('results-search').value.toLowerCase();
-    const filtered=allResultsData.filter(r=>r.student_id.toLowerCase().includes(q)||r.full_name.toLowerCase().includes(q)||r.subject.toLowerCase().includes(q));
-    renderResultsTable(filtered);
+    renderResultsTable(allResultsData.filter(r=>r.student_id.toLowerCase().includes(q)||r.full_name.toLowerCase().includes(q)||r.subject.toLowerCase().includes(q)));
 }
 
-// ===== DELETE RESULTS =====
 async function deleteResults() {
     const studentId=document.getElementById('del-res-studentId').value.trim();
     const subject=document.getElementById('del-res-subject').value;
@@ -1594,9 +1522,8 @@ async function deleteResults() {
     const successEl=document.getElementById('del-res-success'), errorEl=document.getElementById('del-res-error');
     successEl.classList.remove('show'); errorEl.classList.remove('show');
     if (!studentId) { errorEl.textContent='يرجى إدخال رقم الطالب'; errorEl.classList.add('show'); return; }
-    if (subject && (!academicYear || !term)) { errorEl.textContent='يرجى تحديد العام والفصل عند اختيار مادة معينة'; errorEl.classList.add('show'); return; }
-    const msg = subject ? 'هل تريد حذف نتيجة مادة '+subject+' للطالب '+studentId+'؟' : 'هل تريد حذف جميع نتائج الطالب '+studentId+'؟ لا يمكن التراجع!';
-    if (!confirm(msg)) return;
+    if (subject && (!academicYear||!term)) { errorEl.textContent='يرجى تحديد العام والفصل'; errorEl.classList.add('show'); return; }
+    if (!confirm(subject?'حذف نتيجة '+subject+' للطالب '+studentId+'؟':'حذف جميع نتائج الطالب '+studentId+'؟')) return;
     btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الحذف...';
     try {
         const body={studentId};
@@ -1609,7 +1536,6 @@ async function deleteResults() {
     btn.disabled=false; btn.innerHTML='<i class="fas fa-trash-alt"></i> حذف النتائج';
 }
 
-// ===== RESET PASSWORD =====
 async function resetPassword() {
     const studentId=document.getElementById('reset-studentId').value.trim();
     const newPassword=document.getElementById('reset-newPassword').value.trim();
@@ -1627,9 +1553,30 @@ async function resetPassword() {
     btn.disabled=false; btn.innerHTML='<i class="fas fa-key"></i> تعيين كلمة المرور';
 }
 
-// Enter key support
 document.getElementById('student-pass-input').addEventListener('keypress', function(e) { if (e.key==='Enter') studentLogin(); });
-document.getElementById('admin-pass-input').addEventListener('keypress', function(e) { if (e.key==='Enter') adminLogin(); });
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(()=>{});
+    });
+}
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault(); deferredPrompt = e; setTimeout(showInstallBanner, 3000);
+});
+function showInstallBanner() {
+    if (!deferredPrompt) return;
+    const b = document.createElement('div');
+    b.id = 'pwa-banner';
+    b.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e5a3a;color:white;padding:0.9rem 1.5rem;border-radius:50px;box-shadow:0 8px 25px rgba(0,0,0,0.3);z-index:9998;display:flex;align-items:center;gap:0.8rem;font-size:0.95rem;font-weight:600;white-space:nowrap;border:2px solid #FFB347;direction:rtl;';
+    b.innerHTML = '<i class="fas fa-download" style="color:#FFB347;"></i> تثبيت التطبيق على هاتفك <button onclick="installPWA()" style="background:#FFB347;color:#1e2b2f;border:none;padding:0.4rem 1rem;border-radius:30px;font-weight:700;cursor:pointer;margin-right:0.5rem;">تثبيت</button><button onclick="dismissBanner()" style="background:transparent;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:1.2rem;">×</button>';
+    document.body.appendChild(b);
+}
+function installPWA() { if (!deferredPrompt) return; deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; dismissBanner(); }); }
+function dismissBanner() { const b=document.getElementById('pwa-banner'); if(b) b.remove(); }
+window.addEventListener('appinstalled', ()=>{ dismissBanner(); deferredPrompt=null; });
 </script>
 </body>
 </html>
