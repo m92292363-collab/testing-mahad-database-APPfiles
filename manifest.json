@@ -25,16 +25,16 @@
   ],
   "screenshots": [
     {
-      "src": "/screenshots/screenshot-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
+      "src": "/screenshots/screenshot-mobile.jpeg",
+      "sizes": "500x844",
+      "type": "image/jpeg",
       "form_factor": "narrow",
       "label": "Mahad Student Portal"
     },
     {
-      "src": "/screenshots/screenshot-wide.png",
-      "sizes": "1280x800",
-      "type": "image/png",
+      "src": "/screenshots/screenshot-wide.jpeg",
+      "sizes": "1080x800",
+      "type": "image/jpeg",
       "form_factor": "wide",
       "label": "Mahad Student Portal Desktop"
     }
