@@ -1234,7 +1234,7 @@ function toArabicWords(n) {
 async function showStudentDashboard(student) {
     currentStudentData = student;
     document.getElementById('dashStudentName').textContent = student.fullName;
-    document.getElementById('dashStudentNameBig').textContent = 'مرحباً، ' + student.fullName;
+    document.getElementById('dashStudentNameBig').textContent =  student.fullName;
     document.getElementById('dashStudentId').textContent = 'رقم الطالب: ' + student.studentId;
     document.getElementById('dashStudentGrade').textContent = 'المستوى: ' + (student.gradeLevel || '---');
     document.getElementById('studentDashboard').classList.add('active');
