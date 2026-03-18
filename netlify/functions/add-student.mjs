@@ -1,6 +1,5 @@
 import { neon } from '@netlify/neon';
 const sql = neon();
-
 export default async (req) => {
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
@@ -9,20 +8,17 @@ export default async (req) => {
     });
   }
   try {
-    const { studentId, fullName, password, gradeLevel, className } = await req.json();
-
+    const { studentId, fullName, password, gradeLevel, className, dateOfBirth, guardianName, guardianPhone, studentPhone, address } = await req.json();
     if (!studentId || !fullName || !password || !gradeLevel || !className) {
       return new Response(JSON.stringify({ error: 'All fields are required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
     }
-
     await sql`
-      INSERT INTO students (student_id, full_name, password, grade_level, class_name)
-      VALUES (${studentId}, ${fullName}, ${password}, ${parseInt(gradeLevel)}, ${className})
+      INSERT INTO students (student_id, full_name, password, grade_level, class_name, date_of_birth, guardian_name, guardian_phone, student_phone, address)
+      VALUES (${studentId}, ${fullName}, ${password}, ${parseInt(gradeLevel)}, ${className}, ${dateOfBirth||null}, ${guardianName||null}, ${guardianPhone||null}, ${studentPhone||null}, ${address||null})
     `;
-
     return new Response(JSON.stringify({ success: true, message: `Student ${fullName} added successfully` }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
@@ -41,5 +37,4 @@ export default async (req) => {
     });
   }
 };
-
 export const config = { path: '/api/add-student' };
