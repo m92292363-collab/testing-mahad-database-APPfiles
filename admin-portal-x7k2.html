@@ -445,25 +445,30 @@
         <div class="admin-panel" id="panel-add-student">
             <div class="admin-form-card">
                 <h3><i class="fas fa-user-plus"></i> إضافة طالب جديد</h3>
-                <div class="form-grid">
-                    <div class="fg"><label>رقم الطالب *</label><input type="text" id="new-studentId" placeholder="مثال: MA001"></div>
-                    <div class="fg"><label>الاسم الكامل *</label><input type="text" id="new-fullName" placeholder="اسم الطالب بالكامل"></div>
-                    <div class="fg"><label>كلمة المرور *</label><input type="text" id="new-password" placeholder="كلمة مرور الطالب"></div>
-                    <div class="fg"><label>الصف الدراسي *</label>
-                        <select id="new-gradeLevel">
-                            <option value="10">الصف العاشر</option>
-                            <option value="11">الصف الحادي عشر</option>
-                            <option value="12">الصف الثاني عشر</option>
-                        </select>
-                    </div>
-                    <div class="fg"><label>الفصل *</label>
-                        <select id="new-className">
-                            <option value="أ">الفصل أ</option><option value="ب">الفصل ب</option>
-                            <option value="ج">الفصل ج</option><option value="د">الفصل د</option>
-                            <option value="هـ">الفصل هـ</option><option value="و">الفصل و</option>
-                        </select>
-                    </div>
-                </div>
+               <div class="form-grid">
+    <div class="fg"><label>رقم الطالب *</label><input type="text" id="new-studentId" placeholder="مثال: MA001"></div>
+    <div class="fg"><label>الاسم الكامل *</label><input type="text" id="new-fullName" placeholder="اسم الطالب بالكامل"></div>
+    <div class="fg"><label>كلمة المرور *</label><input type="text" id="new-password" placeholder="كلمة مرور الطالب"></div>
+    <div class="fg"><label>الصف الدراسي *</label>
+        <select id="new-gradeLevel">
+            <option value="10">الصف العاشر</option>
+            <option value="11">الصف الحادي عشر</option>
+            <option value="12">الصف الثاني عشر</option>
+        </select>
+    </div>
+    <div class="fg"><label>الفصل *</label>
+        <select id="new-className">
+            <option value="أ">الفصل أ</option><option value="ب">الفصل ب</option>
+            <option value="ج">الفصل ج</option><option value="د">الفصل د</option>
+            <option value="هـ">الفصل هـ</option><option value="و">الفصل و</option>
+        </select>
+    </div>
+    <div class="fg"><label>تاريخ الميلاد</label><input type="date" id="new-dateOfBirth"></div>
+    <div class="fg"><label>اسم ولي الأمر</label><input type="text" id="new-guardianName" placeholder="اسم ولي الأمر"></div>
+    <div class="fg"><label>هاتف ولي الأمر</label><input type="text" id="new-guardianPhone" placeholder="مثال: 2201234567"></div>
+    <div class="fg"><label>هاتف الطالب</label><input type="text" id="new-studentPhone" placeholder="مثال: 2201234567"></div>
+    <div class="fg full"><label>العنوان / مكان السكن</label><input type="text" id="new-address" placeholder="مثال: تالندينج، بنجول"></div>
+</div>
                 <button class="btn-submit" id="saveStudentBtn" onclick="saveStudent()"><i class="fas fa-user-plus"></i> إضافة الطالب</button>
                 <div class="success-msg" id="student-success"></div>
                 <div class="err-msg" id="student-error"></div>
