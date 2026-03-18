@@ -1204,19 +1204,31 @@ async function saveStudent() {
     const password = document.getElementById('new-password').value.trim();
     const gradeLevel = document.getElementById('new-gradeLevel').value;
     const className = document.getElementById('new-className').value;
+    const dateOfBirth = document.getElementById('new-dateOfBirth').value || null;
+    const guardianName = document.getElementById('new-guardianName').value.trim() || null;
+    const guardianPhone = document.getElementById('new-guardianPhone').value.trim() || null;
+    const studentPhone = document.getElementById('new-studentPhone').value.trim() || null;
+    const address = document.getElementById('new-address').value.trim() || null;
     const btn = document.getElementById('saveStudentBtn');
     const successEl = document.getElementById('student-success'), errorEl = document.getElementById('student-error');
     successEl.classList.remove('show'); errorEl.classList.remove('show');
     if (!studentId || !fullName || !password) { errorEl.textContent = 'يرجى ملء جميع الحقول'; errorEl.classList.add('show'); return; }
     btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإضافة...';
     try {
-        const res = await fetch('/api/add-student', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({studentId, fullName, password, gradeLevel: parseInt(gradeLevel), className})});
+        const res = await fetch('/api/add-student', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({studentId, fullName, password, gradeLevel: parseInt(gradeLevel), className, dateOfBirth, guardianName, guardianPhone, studentPhone, address})});
         const data = await res.json();
         if (data.success) {
             cachedStudents = [];
             successEl.textContent = `✅ تم إضافة الطالب ${fullName} بنجاح!`;
             successEl.classList.add('show');
-            document.getElementById('new-studentId').value = ''; document.getElementById('new-fullName').value = ''; document.getElementById('new-password').value = '';
+            document.getElementById('new-studentId').value = '';
+            document.getElementById('new-fullName').value = '';
+            document.getElementById('new-password').value = '';
+            document.getElementById('new-dateOfBirth').value = '';
+            document.getElementById('new-guardianName').value = '';
+            document.getElementById('new-guardianPhone').value = '';
+            document.getElementById('new-studentPhone').value = '';
+            document.getElementById('new-address').value = '';
             loadDashboardStats();
         } else { errorEl.textContent = data.error || 'حدث خطأ'; errorEl.classList.add('show'); }
     } catch { errorEl.textContent = 'خطأ في الاتصال'; errorEl.classList.add('show'); }
