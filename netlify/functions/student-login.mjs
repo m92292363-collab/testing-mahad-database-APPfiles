@@ -1,7 +1,5 @@
 import { neon } from '@netlify/neon';
-
 const sql = neon();
-
 export default async (req) => {
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
@@ -9,43 +7,42 @@ export default async (req) => {
       headers: { 'Content-Type': 'application/json' }
     });
   }
-
   try {
     const { studentId, password } = await req.json();
-
     if (!studentId || !password) {
       return new Response(JSON.stringify({ error: 'Student ID and password are required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
     }
-
     const [student] = await sql`
-      SELECT id, student_id, full_name, grade_level 
+      SELECT id, student_id, full_name, grade_level, date_of_birth, guardian_name, guardian_phone, student_phone, address
       FROM students 
       WHERE student_id = ${studentId} AND password = ${password}
     `;
-
     if (!student) {
       return new Response(JSON.stringify({ error: 'Invalid Student ID or password' }), {
         status: 401,
         headers: { 'Content-Type': 'application/json' }
       });
     }
-
     return new Response(JSON.stringify({ 
       success: true, 
       student: {
         id: student.id,
         studentId: student.student_id,
         fullName: student.full_name,
-        gradeLevel: student.grade_level
+        gradeLevel: student.grade_level,
+        dateOfBirth: student.date_of_birth,
+        guardianName: student.guardian_name,
+        guardianPhone: student.guardian_phone,
+        studentPhone: student.student_phone,
+        address: student.address
       }
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
-
   } catch (error) {
     console.error('Login error:', error);
     return new Response(JSON.stringify({ error: 'Server error. Please try again.' }), {
@@ -54,5 +51,4 @@ export default async (req) => {
     });
   }
 };
-
 export const config = { path: '/api/student-login' };
