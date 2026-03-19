@@ -1242,6 +1242,11 @@ async function showStudentDashboard(student) {
     document.getElementById('dashStudentNameBig').textContent =  student.fullName;
     document.getElementById('dashStudentId').textContent = 'رقم الطالب: ' + student.studentId;
     document.getElementById('dashStudentGrade').textContent = 'المستوى: ' + (student.gradeLevel || '---');
+    document.getElementById('dashStudentDob').innerHTML = '<i class="fas fa-birthday-cake" style="color:var(--primary-accent);margin-left:0.4rem;"></i> تاريخ الميلاد: ' + (student.dateOfBirth || '---');
+document.getElementById('dashStudentPhone').innerHTML = '<i class="fas fa-phone" style="color:var(--primary-accent);margin-left:0.4rem;"></i> هاتف الطالب: ' + (student.studentPhone || '---');
+document.getElementById('dashGuardianName').innerHTML = '<i class="fas fa-user-shield" style="color:var(--primary-accent);margin-left:0.4rem;"></i> ولي الأمر: ' + (student.guardianName || '---');
+document.getElementById('dashGuardianPhone').innerHTML = '<i class="fas fa-phone-alt" style="color:var(--primary-accent);margin-left:0.4rem;"></i> هاتف ولي الأمر: ' + (student.guardianPhone || '---');
+document.getElementById('dashStudentAddress').innerHTML = '<i class="fas fa-map-marker-alt" style="color:var(--primary-accent);margin-left:0.4rem;"></i> العنوان: ' + (student.address || '---');
     document.getElementById('studentDashboard').classList.add('active');
     document.body.style.overflow = 'hidden';
     try {
