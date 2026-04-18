@@ -1,39 +1,59 @@
 import { neon } from '@neondatabase/serverless';
+import {
+  getCorsHeaders, handleOptions, jsonResponse, requireAdmin,
+  validateStudentId, sanitise
+} from './_middleware.js';
 
 const sql = neon(process.env.DATABASE_URL);
 
 export default async (req) => {
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': process.env.ALLOWED_ORIGIN || '*',
-    'Access-Control-Allow-Methods': 'DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, x-admin-key'
-  };
+  const optRes = handleOptions(req);
+  if (optRes) return optRes;
 
-  if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers });
-  if (req.method !== 'DELETE') return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
+  const headers = getCorsHeaders(req);
 
-  if (req.headers.get('x-admin-key') !== process.env.ADMIN_SECRET_KEY) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
+  if (req.method !== 'DELETE') {
+    return jsonResponse({ error: 'Method not allowed' }, 405, req);
   }
 
   try {
-    const { studentId } = await req.json();
+    requireAdmin(req, headers);
+  } catch (errResponse) {
+    return errResponse;
+  }
 
-    if (!studentId || studentId.length > 20) {
-      return new Response(JSON.stringify({ error: 'Student ID is required' }), { status: 400, headers });
+  let body;
+  try {
+    body = await req.json();
+  } catch {
+    return jsonResponse({ error: 'Invalid request body' }, 400, req);
+  }
+
+  const studentId = sanitise(body.studentId);
+
+  if (!validateStudentId(studentId)) {
+    return jsonResponse({ error: 'Invalid student ID' }, 400, req);
+  }
+
+  try {
+    const [student] = await sql`
+      SELECT student_id, full_name FROM students WHERE student_id = ${studentId}
+    `;
+    if (!student) {
+      return jsonResponse({ error: `Student ID ${studentId} not found` }, 404, req);
     }
-
-    const [student] = await sql`SELECT student_id FROM students WHERE student_id = ${studentId}`;
-    if (!student) return new Response(JSON.stringify({ error: `Student ID ${studentId} not found` }), { status: 404, headers });
 
     await sql`DELETE FROM results WHERE student_id = ${studentId}`;
     await sql`DELETE FROM students WHERE student_id = ${studentId}`;
 
-    return new Response(JSON.stringify({ success: true, message: `Student ${studentId} deleted successfully` }), { status: 200, headers });
+    return jsonResponse({
+      success: true,
+      message: `Student ${student.full_name} (${studentId}) and all their results deleted successfully`
+    }, 200, req);
+
   } catch (error) {
     console.error('Delete student error:', error);
-    return new Response(JSON.stringify({ error: 'Server error. Please try again.' }), { status: 500, headers });
+    return jsonResponse({ error: 'Server error. Please try again.' }, 500, req);
   }
 };
 
