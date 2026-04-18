@@ -274,46 +274,54 @@
         .loading-spinner i { font-size: 2rem; color: var(--primary-accent); animation: spin 1s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* ADMIN DASHBOARD */
-        .admin-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .admin-tab { padding: 0.6rem 1.2rem; border-radius: 30px; border: 2px solid var(--islamic-green); color: var(--islamic-green); background: white; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; display: flex; align-items: center; gap: 0.4rem; }
-        .admin-tab.active { background: var(--islamic-green); color: white; }
-        .admin-tab i { font-size: 0.85rem; }
-        .admin-panel { display: none; }
-        .admin-panel.active { display: block; }
-        .admin-form-card { background: white; border-radius: 1.5rem; padding: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; }
-        .admin-form-card h3 { color: var(--islamic-green); font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
-        .admin-form-card h3 i { color: var(--primary-accent); }
-        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-        .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-soft); }
-        .form-group input, .form-group select { padding: 0.7rem 1rem; border: 1px solid rgba(30,90,58,0.2); border-radius: 10px; font-size: 16px; outline: none; transition: all 0.2s; background: white; }
-        .form-group input:focus, .form-group select:focus { border-color: var(--primary-accent); box-shadow: 0 0 0 3px rgba(255,179,71,0.15); }
-        .form-group.full-width { grid-column: span 2; }
-        .btn-submit { background: linear-gradient(145deg, #1e5a3a 0%, #2b7a4f 100%); color: white; padding: 0.8rem 2rem; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; margin-top: 1rem; }
-        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30,90,58,0.3); }
-        .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-        .btn-danger { background: linear-gradient(145deg, #c0392b 0%, #e74c3c 100%); color: white; padding: 0.8rem 2rem; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; margin-top: 1rem; }
-        .btn-danger:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(192,57,43,0.3); }
-        .btn-danger:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-        .success-msg { color: #155724; background: #d4edda; padding: 0.8rem 1rem; border-radius: 10px; margin-top: 1rem; display: none; font-size: 0.9rem; }
-        .success-msg.show { display: block; }
-        .error-msg { color: #721c24; background: #f8d7da; padding: 0.8rem 1rem; border-radius: 10px; margin-top: 1rem; display: none; font-size: 0.9rem; }
-        .error-msg.show { display: block; }
+        /* REPORT OVERLAY */
+        #a4Report {
+            background: #fff; width: 210mm; min-height: 297mm; margin: 0 auto;
+            border: 2.5pt solid #000; padding: 12mm 15mm; position: relative;
+            display: flex; flex-direction: column; box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            font-family: 'Arial', sans-serif; color: #000; font-size: 13px;
+            box-sizing: border-box; direction: rtl;
+        }
+        .rpt-header-section { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; width: 100%; }
+        .rpt-left { text-align: right; direction: rtl; font-size: 13px; font-weight: bold; line-height: 1.7; width: 33%; }
+        .rpt-center { text-align: center; width: 34%; }
+        .rpt-right { text-align: left; direction: ltr; font-size: 12px; font-weight: bold; line-height: 1.7; width: 33%; }
+        .rpt-bismillah { font-size: 11px; font-weight: bold; margin-bottom: 5px; }
+        .rpt-logo-img { width: 70px; height: 70px; object-fit: contain; margin: 5px auto; display: block; }
+        .rpt-title-box { text-align: center; font-size: 20px; font-weight: bold; text-decoration: underline; text-underline-offset: 6px; margin: 8px 0 12px; }
+        .rpt-info-box { border: 2pt solid #000; padding: 10px 12px; margin-bottom: 12px; line-height: 1.8; font-size: 13px; }
+        .rpt-info-stats { display: flex; justify-content: space-between; margin-top: 8px; font-size: 13px; font-weight: bold; }
+        .rpt-marks-table { width: 100%; border-collapse: collapse; border: 2pt solid #000; margin-top: 0; font-size: 13px; }
+        .rpt-marks-table th, .rpt-marks-table td { border: 1.2pt solid #000; padding: 6px 4px; text-align: center; font-weight: bold; }
+        .rpt-marks-table th { background: #e8e8e8; }
+        .rpt-subject-cell { text-align: right; padding-right: 12px !important; }
+        .rpt-subject-en { text-align: left; padding-left: 12px !important; direction: ltr; }
+        .rpt-footer { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr 1fr; text-align: center; padding-top: 25px; font-weight: bold; font-size: 13px; }
+        .rpt-sig-underline { margin-top: 45px; border-top: 2pt solid #000; width: 80%; margin: 45px auto 0 auto; }
+        .rpt-stamp-placeholder { height: 90px; }
 
-        /* ADMIN DATA TABLE */
-        .admin-data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 1rem; }
-        .admin-data-table th { background: var(--islamic-green); color: white; padding: 0.8rem 1rem; text-align: right; font-size: 0.85rem; position: sticky; top: 0; }
-        .admin-data-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(30,90,58,0.1); text-align: right; }
-        .admin-data-table tr:nth-child(even) td { background: #f8faf8; }
-        .admin-data-table tr:hover td { background: rgba(255,179,71,0.08); }
-        .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid rgba(30,90,58,0.1); max-height: 500px; overflow-y: auto; }
-        .table-stats { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
-        .stat-badge { background: linear-gradient(135deg, var(--islamic-green), #2b7a4f); color: white; padding: 0.5rem 1.2rem; border-radius: 30px; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; }
-        .stat-badge i { color: var(--primary-accent); }
-        .search-bar { display: flex; align-items: center; gap: 0.5rem; background: white; border: 1px solid rgba(30,90,58,0.2); border-radius: 10px; padding: 0.5rem 1rem; margin-bottom: 1rem; }
-        .search-bar input { border: none; outline: none; font-size: 0.95rem; flex: 1; background: transparent; }
-        .search-bar i { color: #999; }
+        #reportOverlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; background: #555; flex-direction: column; overflow: hidden; }
+        #reportOverlay.active { display: flex; }
+        #reportToolbar { flex-shrink: 0; background: #1e5a3a; display: flex; align-items: center; gap: 0.8rem; padding: 0.6rem 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.4); direction: rtl; z-index: 2; }
+        #reportToolbar button { display: flex; align-items: center; gap: 0.4rem; border: none; border-radius: 30px; padding: 0.5rem 1.2rem; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+        #reportToolbar .btn-back { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); }
+        #reportToolbar .btn-back:hover { background: rgba(255,255,255,0.25); }
+        #reportToolbar .btn-print { background: #FFB347; color: #1e2b2f; }
+        #reportToolbar .btn-print:hover { background: #ffc46a; }
+        #reportToolbar .toolbar-title { color: rgba(255,255,255,0.85); font-size: 0.9rem; font-weight: 600; margin-right: auto; }
+        #reportCanvas { flex: 1; overflow: auto; display: flex; align-items: flex-start; justify-content: center; padding: 20px; }
+        #reportCanvas #a4Report { transform-origin: top center; flex-shrink: 0; }
+
+        @media print {
+            body * { visibility: hidden; }
+            #a4Report, #a4Report * { visibility: visible; }
+            #a4Report { position: fixed !important; top: 0 !important; left: 0 !important; width: 210mm !important; min-height: 297mm !important; margin: 0 !important; padding: 12mm 15mm !important; box-shadow: none !important; border: 2.5pt solid #000 !important; }
+        }
+
+        .login-form input { text-align: left; direction: ltr; }
+        .login-form input::placeholder { text-align: right; direction: rtl; }
+        @keyframes shake { 0%,100%{transform:translateX(0)} 15%{transform:translateX(-8px)} 30%{transform:translateX(8px)} 45%{transform:translateX(-6px)} 60%{transform:translateX(6px)} 75%{transform:translateX(-4px)} 90%{transform:translateX(4px)} }
+        .shake { animation: shake 0.5s ease; }
 
         /* FOOTER */
         .footer { background: var(--footer-bg); color: var(--footer-text); padding: 2.5rem 0 2rem; margin-top: 3rem; width: 100%; border-top: 4px solid var(--primary-accent); position: relative; }
@@ -338,226 +346,6 @@
         .whatsapp-float { position: fixed; bottom: max(15px, env(safe-area-inset-bottom)); right: max(15px, env(safe-area-inset-right)); background-color: #25d366; color: white; width: clamp(50px, 12vw, 60px); height: clamp(50px, 12vw, 60px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: clamp(2rem, 6vw, 2.5rem); box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 100; transition: all 0.3s; text-decoration: none; }
         .whatsapp-float:active { background-color: #20b859; transform: scale(0.95); }
 
-        /* ============================================================
-           A4 REPORT — EXACT MATCH TO REAL SCHOOL PAPER
-           ============================================================ */
-        #a4Report {
-            background: #fff;
-            width: 210mm;
-            min-height: 297mm;
-            margin: 0 auto;
-            border: 2.5pt solid #000;
-            padding: 12mm 15mm;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-            font-family: 'Arial', sans-serif;
-            color: #000;
-            font-size: 13px;
-            box-sizing: border-box;
-            direction: rtl;
-        }
-
-        /* HEADER - Arabic on LEFT, English on RIGHT */
-        .rpt-header-section {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            width: 100%;
-        }
-        .rpt-left {
-            text-align: right;
-            direction: rtl;
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 1.7;
-            width: 33%;
-        }
-        .rpt-center {
-            text-align: center;
-            width: 34%;
-        }
-        .rpt-right {
-            text-align: left;
-            direction: ltr;
-            font-size: 12px;
-            font-weight: bold;
-            line-height: 1.7;
-            width: 33%;
-        }
-        .rpt-bismillah {
-            font-size: 11px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .rpt-logo-img {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-            margin: 5px auto;
-            display: block;
-        }
-
-        /* TITLE */
-        .rpt-title-box {
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-            text-decoration: underline;
-            text-underline-offset: 6px;
-            margin: 8px 0 12px;
-        }
-
-        /* ATTESTATION BOX */
-        .rpt-info-box {
-            border: 2pt solid #000;
-            padding: 10px 12px;
-            margin-bottom: 12px;
-            line-height: 1.8;
-            font-size: 13px;
-            font-weight: normal;
-        }
-        .rpt-info-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 8px;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        /* MARKS TABLE */
-        .rpt-marks-table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 2pt solid #000;
-            margin-top: 0;
-            font-size: 13px;
-        }
-        .rpt-marks-table th,
-        .rpt-marks-table td {
-            border: 1.2pt solid #000;
-            padding: 6px 4px;
-            text-align: center;
-            font-weight: bold;
-        }
-        .rpt-marks-table th {
-            background: #e8e8e8;
-        }
-        .rpt-subject-cell {
-            text-align: right;
-            padding-right: 12px !important;
-        }
-        .rpt-subject-en {
-            text-align: left;
-            padding-left: 12px !important;
-            direction: ltr;
-        }
-
-        /* SIGNATURES */
-        .rpt-footer {
-            margin-top: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            text-align: center;
-            padding-top: 25px;
-            font-weight: bold;
-            font-size: 13px;
-        }
-        .rpt-sig-underline {
-            margin-top: 45px;
-            border-top: 2pt solid #000;
-            width: 80%;
-            margin: 45px auto 0 auto;
-        }
-        .rpt-stamp-placeholder {
-            height: 90px;
-        }
-
-        /* FULL-SCREEN OVERLAY */
-        #reportOverlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 99999;
-            background: #555;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        #reportOverlay.active { display: flex; }
-        #reportToolbar {
-            flex-shrink: 0;
-            background: #1e5a3a;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 0.6rem 1.2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-            direction: rtl;
-            z-index: 2;
-        }
-        #reportToolbar button {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            border: none;
-            border-radius: 30px;
-            padding: 0.5rem 1.2rem;
-            font-size: 0.9rem;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        #reportToolbar .btn-back { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); }
-        #reportToolbar .btn-back:hover { background: rgba(255,255,255,0.25); }
-        #reportToolbar .btn-print { background: #FFB347; color: #1e2b2f; }
-        #reportToolbar .btn-print:hover { background: #ffc46a; }
-        #reportToolbar .toolbar-title { color: rgba(255,255,255,0.85); font-size: 0.9rem; font-weight: 600; margin-right: auto; }
-        #reportCanvas {
-            flex: 1;
-            overflow: auto;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding: 20px;
-        }
-        #reportCanvas #a4Report {
-            transform-origin: top center;
-            flex-shrink: 0;
-        }
-
-        /* PRINT STYLES */
-        @media print {
-            body * { visibility: hidden; }
-            #a4Report, #a4Report * { visibility: visible; }
-            #a4Report {
-                position: fixed !important;
-                top: 0 !important; left: 0 !important;
-                width: 210mm !important;
-                min-height: 297mm !important;
-                margin: 0 !important;
-                padding: 12mm 15mm !important;
-                box-shadow: none !important;
-                border: 2.5pt solid #000 !important;
-            }
-        }
-
-        /* ========== NEW: LOGIN INPUT FIX + SHAKE + LOCKOUT ========== */
-        .login-form input { text-align: left; direction: ltr; }
-        .login-form input::placeholder { text-align: right; direction: rtl; }
-        @keyframes shake {
-            0%,100%{transform:translateX(0)}
-            15%{transform:translateX(-8px)}
-            30%{transform:translateX(8px)}
-            45%{transform:translateX(-6px)}
-            60%{transform:translateX(6px)}
-            75%{transform:translateX(-4px)}
-            90%{transform:translateX(4px)}
-        }
-        .shake { animation: shake 0.5s ease; }
-        /* ============================================================ */
-
-        /* MOBILE */
         @media (max-width: 820px) {
             .container { padding: 0 0.8rem; }
             .navbar { flex-direction: column; gap: 0.4rem; padding: 0.6rem 0; }
@@ -567,28 +355,14 @@
             .school-logo i { font-size: 2rem; }
             .search-container { width: 70%; max-width: 250px; }
             .tab-item { padding: 0.6rem 0.8rem; font-size: 0.8rem; }
-            .carousel-slides { padding-bottom: 56.25%; }
-            .welcome-section { padding: 1.2rem 0.5rem; }
-            .welcome-card { padding: 1.2rem 1rem; }
-            .welcome-title { font-size: 1.4rem; }
             .programs-list { grid-template-columns: 1fr; }
             .news-grid { grid-template-columns: 1fr; }
             .news-card.featured { grid-template-columns: 1fr; }
             .login-section { grid-template-columns: 1fr; }
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full-width { grid-column: span 1; }
-            .newsletter-input { flex-direction: column; background: transparent; }
-            .newsletter-input input { min-width: unset; width: 100%; }
             .student-welcome-card { flex-direction: column; text-align: center; }
-            .admin-tabs { gap: 0.3rem; }
-            .admin-tab { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
             #a4Report { width: 100%; min-height: auto; padding: 8mm; font-size: 10px; }
             .rpt-left, .rpt-right { width: 40%; font-size: 9px; }
             .rpt-title-box { font-size: 14px; }
-            .rpt-info-box { font-size: 11px; }
-            .rpt-marks-table { font-size: 9px; }
-            .rpt-marks-table th, .rpt-marks-table td { padding: 2px 1px; }
-            .rpt-footer { font-size: 9px; }
         }
         @media (max-width: 480px) {
             .institute-name { font-size: 1.2rem; }
@@ -656,12 +430,8 @@
 <!-- ===== REPORT FULL-SCREEN OVERLAY ===== -->
 <div id="reportOverlay">
     <div id="reportToolbar">
-        <button class="btn-back" onclick="backToTerms()">
-            <i class="fas fa-arrow-right"></i> رجوع
-        </button>
-        <button class="btn-print" onclick="printReport()">
-            <i class="fas fa-print"></i> طباعة / PDF
-        </button>
+        <button class="btn-back" onclick="backToTerms()"><i class="fas fa-arrow-right"></i> رجوع</button>
+        <button class="btn-print" onclick="printReport()"><i class="fas fa-print"></i> طباعة / PDF</button>
         <span class="toolbar-title" id="toolbarTitle"></span>
     </div>
     <div id="reportCanvas">
@@ -671,340 +441,45 @@
                     جمهورية غامبيا<br>
                     الاتحاد الإسلامي الغامبي<br>
                     المعهد الإسلامي بتلند كنجا<br>
-                    اسم الطالب/ <strong id="reportStudentName">يايا مالك جوف</strong><br>
-                    الفصل: <span id="reportClassName">الصف الأول الثانوي (د)</span>
+                    اسم الطالب/ <strong id="reportStudentName"></strong><br>
+                    الفصل: <span id="reportClassName"></span>
                 </div>
                 <div class="rpt-center">
                     <div class="rpt-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-                    <img class="rpt-logo-img" src="https://raw.githubusercontent.com/m92292363-collab/Tallinding-Islamic-Institute/main/logo.png"
-                         alt="Tallinding Islamic Institute Logo"
-                         onerror="this.style.display='none'; this.nextSibling.style.display='flex';">
-                    <div style="display: none; width: 70px; height: 70px; border: 2pt solid #000; border-radius: 50%; margin: 5px auto; align-items: center; justify-content: center; font-size: 10px;">الشعار</div>
+                    <img class="rpt-logo-img" src="https://raw.githubusercontent.com/m92292363-collab/Tallinding-Islamic-Institute/main/logo.png" alt="Logo" onerror="this.style.display='none'">
                 </div>
                 <div class="rpt-right">
                     Republic of The Gambia<br>
                     The Gambia Islamic Union<br>
-                    Tallinding Islamic Institute<br>
-                    <br>
-                    التاريخ: <span id="reportDateLeft">١٦/٧/٢٠٢٥</span>
+                    Tallinding Islamic Institute<br><br>
+                    التاريخ: <span id="reportDateLeft"></span>
                 </div>
             </div>
-
             <div class="rpt-title-box">كشف الدرجات للمرحلة الثانوية</div>
-
             <div class="rpt-info-box">
-                <div id="attestationText">تشهد إدارة المعهد الإسلامي بتلند كنجا بأن الطالب: <strong>يايا مالك جوف</strong> قد نجح في امتحان الدور الأول للعام الدراسي ٢٠٢٤/٢٠٢٥م بتقدير: <strong>جيد</strong>. وبناء عليه استحق نيل هذه الوثيقة.</div>
+                <div id="attestationText"></div>
                 <div class="rpt-info-stats">
-                    <div>
-                        عدد طلاب الفصل: <span id="reportClassCount">٧٩</span><br>
-                        عدد الناجحين: <span id="reportPassCount">٧٣</span>
-                    </div>
-                    <div style="text-align:left;">
-                        الترتيب: <span id="reportRank">٤٤</span><br>
-                        التقدير: <span id="reportGradeLabel">جيد</span>
-                    </div>
+                    <div>عدد طلاب الفصل: <span id="reportClassCount">---</span><br>عدد الناجحين: <span id="reportPassCount">---</span></div>
+                    <div style="text-align:left;">الترتيب: <span id="reportRank">---</span><br>التقدير: <span id="reportGradeLabel">---</span></div>
                 </div>
             </div>
-
             <table class="rpt-marks-table">
                 <thead>
                     <tr>
                         <th rowspan="2">م</th>
-                        <th rowspan="2" style="width:32%;">الـمـــــــــادة</th>
+                        <th rowspan="2" style="width:32%;">الـمـادة</th>
                         <th colspan="2">الدرجة العامة</th>
                         <th colspan="2">الدرجة المكتسبة</th>
-                        <th rowspan="2" style="width:10%;">مـلاحـظـة</th>
+                        <th rowspan="2" style="width:10%;">ملاحظة</th>
                     </tr>
-                    <tr>
-                        <th>الكبرى</th>
-                        <th>الصغرى</th>
-                        <th>رقماً</th>
-                        <th>كتابة</th>
-                    </tr>
+                    <tr><th>الكبرى</th><th>الصغرى</th><th>رقماً</th><th>كتابة</th></tr>
                 </thead>
                 <tbody id="reportTableBody"></tbody>
             </table>
-
             <div class="rpt-footer">
                 <div>توقيع مدير المعهد<div class="rpt-sig-underline"></div></div>
                 <div>ختم المعهد الرسمي<div class="rpt-stamp-placeholder"></div></div>
                 <div>توقيع مدير الامتحانات<div class="rpt-sig-underline"></div></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ===== ADMIN DASHBOARD ===== -->
-<div class="dashboard-overlay" id="adminDashboard">
-    <div class="dashboard-header">
-        <h2><i class="fas fa-shield-alt"></i> لوحة الإدارة</h2>
-        <button class="dashboard-logout" onclick="logout('admin')">
-            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-        </button>
-    </div>
-    <div class="dashboard-body">
-        <div class="admin-tabs">
-            <button class="admin-tab active" onclick="switchAdminTab('add-marks', this)"><i class="fas fa-edit"></i> إدخال النتائج</button>
-            <button class="admin-tab" onclick="switchAdminTab('add-student', this)"><i class="fas fa-user-plus"></i> إضافة طالب</button>
-            <button class="admin-tab" onclick="switchAdminTab('all-students', this)"><i class="fas fa-users"></i> كل الطلاب</button>
-            <button class="admin-tab" onclick="switchAdminTab('update-student', this)"><i class="fas fa-user-edit"></i> تعديل طالب</button>
-            <button class="admin-tab" onclick="switchAdminTab('delete-student', this)"><i class="fas fa-user-times"></i> حذف طالب</button>
-            <button class="admin-tab" onclick="switchAdminTab('all-results', this)"><i class="fas fa-table"></i> كل النتائج</button>
-            <button class="admin-tab" onclick="switchAdminTab('delete-results', this)"><i class="fas fa-trash-alt"></i> حذف نتائج</button>
-            <button class="admin-tab" onclick="switchAdminTab('reset-password', this)"><i class="fas fa-key"></i> إعادة كلمة المرور</button>
-        </div>
-
-        <!-- Panel: Add Marks -->
-        <div class="admin-panel active" id="panel-add-marks">
-            <div class="admin-form-card">
-                <h3><i class="fas fa-edit"></i> إدخال نتائج الطالب</h3>
-                <div class="form-grid">
-                    <div class="form-group"><label>الصف الدراسي *</label>
-                        <select id="marks-grade-filter" onchange="filterStudentsByGradeClass()">
-                            <option value="">-- اختر الصف --</option>
-                            <option value="10">الصف العاشر</option>
-                            <option value="11">الصف الحادي عشر</option>
-                            <option value="12">الصف الثاني عشر</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>الفصل *</label>
-                        <select id="marks-class-filter" onchange="filterStudentsByGradeClass()">
-                            <option value="">-- اختر الفصل --</option>
-                            <option value="أ">الفصل أ</option>
-                            <option value="ب">الفصل ب</option>
-                            <option value="ج">الفصل ج</option>
-                            <option value="د">الفصل د</option>
-                            <option value="هـ">الفصل هـ</option>
-                            <option value="و">الفصل و</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>رقم الطالب *</label>
-                        <select id="marks-studentId">
-                            <option value="">-- اختر الصف والفصل أولاً --</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>المادة *</label>
-                        <select id="marks-subject">
-                            <option value="">-- اختر المادة --</option>
-                            <option value="القرآن الكريم">القرآن الكريم</option>
-                            <option value="القراءة المجودة">القراءة المجودة</option>
-                            <option value="التفسير">التفسير</option>
-                            <option value="أصول التفسير">أصول التفسير</option>
-                            <option value="الحديث">الحديث</option>
-                            <option value="أصول الحديث">أصول الحديث</option>
-                            <option value="التوحيد">التوحيد</option>
-                            <option value="الفقه">الفقه</option>
-                            <option value="الفرائض">الفرائض</option>
-                            <option value="النحو">النحو</option>
-                            <option value="البلاغة">البلاغة</option>
-                            <option value="الأدب">الأدب</option>
-                            <option value="المطالعة">المطالعة</option>
-                            <option value="الإنشاء">الإنشاء</option>
-                            <option value="التاريخ">التاريخ</option>
-                            <option value="علم النفس">علم النفس</option>
-                            <option value="الجغرافيا">الجغرافيا</option>
-                            <option value="التربية">التربية</option>
-                            <option value="English Language">English Language</option>
-                            <option value="الإنسانية">الإنسانية</option>
-                            <option value="العلوم">العلوم</option>
-                            <option value="اللغة">اللغة</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>الدرجة (من 100) *</label><input type="number" id="marks-score" placeholder="85" min="0" max="100"></div>
-                    <div class="form-group"><label>التقدير *</label>
-                        <select id="marks-grade">
-                            <option value="">-- اختر التقدير --</option>
-                            <option value="A">A - ممتاز</option>
-                            <option value="B">B - جيد جداً</option>
-                            <option value="C">C - جيد</option>
-                            <option value="D">D - مقبول</option>
-                            <option value="F">F - راسب</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>العام الدراسي *</label><input type="text" id="marks-year" placeholder="2025-2026" value="2025-2026"></div>
-                    <div class="form-group"><label>الفصل الدراسي *</label>
-                        <select id="marks-term">
-                            <option value="Term 1">الفصل الأول</option>
-                            <option value="Term 2">الفصل الثاني</option>
-                            <option value="Term 3">الفصل الثالث</option>
-                        </select>
-                    </div>
-                </div>
-                <button class="btn-submit" id="saveMarksBtn" onclick="saveMarks()"><i class="fas fa-save"></i> حفظ النتيجة</button>
-                <div class="success-msg" id="marks-success">✅ تم حفظ النتيجة بنجاح!</div>
-                <div class="error-msg" id="marks-error"></div>
-            </div>
-        </div>
-
-        <!-- Panel: Add Student -->
-        <div class="admin-panel" id="panel-add-student">
-            <div class="admin-form-card">
-                <h3><i class="fas fa-user-plus"></i> إضافة طالب جديد</h3>
-                <div class="form-grid">
-                    <div class="form-group"><label>رقم الطالب *</label><input type="text" id="new-studentId" placeholder="مثال: MA002"></div>
-                    <div class="form-group"><label>الاسم الكامل *</label><input type="text" id="new-fullName" placeholder="اسم الطالب بالكامل"></div>
-                    <div class="form-group"><label>كلمة المرور *</label><input type="text" id="new-password" placeholder="كلمة مرور الطالب"></div>
-                    <div class="form-group"><label>الصف الدراسي *</label>
-                        <select id="new-gradeLevel">
-                            <option value="10">الصف العاشر</option>
-                            <option value="11">الصف الحادي عشر</option>
-                            <option value="12">الصف الثاني عشر</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>الفصل *</label>
-                        <select id="new-className">
-                            <option value="أ">الفصل أ</option>
-                            <option value="ب">الفصل ب</option>
-                            <option value="ج">الفصل ج</option>
-                            <option value="د">الفصل د</option>
-                            <option value="هـ">الفصل هـ</option>
-                            <option value="و">الفصل و</option>
-                        </select>
-                    </div>
-                </div>
-                <button class="btn-submit" id="saveStudentBtn" onclick="saveStudent()"><i class="fas fa-user-plus"></i> إضافة الطالب</button>
-                <div class="success-msg" id="student-success"></div>
-                <div class="error-msg" id="student-error"></div>
-            </div>
-        </div>
-
-        <!-- Panel: All Students -->
-        <div class="admin-panel" id="panel-all-students">
-            <div class="admin-form-card">
-                <h3><i class="fas fa-users"></i> قائمة جميع الطلاب</h3>
-                <div class="form-grid" style="margin-bottom:1rem;">
-                    <div class="form-group"><label>تصفية حسب الصف</label>
-                        <select id="as-grade-filter"><option value="">-- كل الصفوف --</option><option value="10">الصف العاشر</option><option value="11">الصف الحادي عشر</option><option value="12">الصف الثاني عشر</option></select>
-                    </div>
-                    <div class="form-group"><label>تصفية حسب الفصل</label>
-                        <select id="as-class-filter"><option value="">-- كل الفصول --</option><option value="أ">الفصل أ</option><option value="ب">الفصل ب</option><option value="ج">الفصل ج</option><option value="د">الفصل د</option><option value="هـ">الفصل هـ</option><option value="و">الفصل و</option></select>
-                    </div>
-                </div>
-                <div class="search-bar"><i class="fas fa-search"></i><input type="text" id="students-search" placeholder="ابحث بالاسم أو الرقم..." oninput="filterStudentsTable()"></div>
-                <div style="display:flex;gap:0.8rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem;">
-                    <button class="btn-submit" onclick="loadAllStudents()" style="margin-top:0;"><i class="fas fa-sync-alt"></i> تحديث القائمة</button>
-                    <div class="stat-badge" id="students-count"><i class="fas fa-users"></i> إجمالي الطلاب: 0</div>
-                </div>
-                <div class="table-wrap">
-                    <table class="admin-data-table" id="allStudentsTable">
-                        <thead><tr><th>#</th><th>رقم الطالب</th><th>الاسم الكامل</th><th>الصف</th><th>الفصل</th></tr></thead>
-                        <tbody id="allStudentsBody"><tr><td colspan="5" style="text-align:center;padding:2rem;color:#999;">اضغط "تحديث القائمة" لتحميل البيانات</td></tr></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Panel: Update Student -->
-        <div class="admin-panel" id="panel-update-student">
-            <div class="admin-form-card">
-                <h3><i class="fas fa-user-edit"></i> تعديل بيانات طالب</h3>
-                <div class="form-grid">
-                    <div class="form-group"><label>رقم الطالب *</label><input type="text" id="update-studentId" placeholder="مثال: MA001"></div>
-                    <div class="form-group"><label>الاسم الكامل الجديد</label><input type="text" id="update-fullName" placeholder="اتركه فارغاً للإبقاء على الحالي"></div>
-                    <div class="form-group"><label>الصف الدراسي الجديد</label>
-                        <select id="update-gradeLevel"><option value="">-- لا تغيير --</option><option value="10">الصف العاشر</option><option value="11">الصف الحادي عشر</option><option value="12">الصف الثاني عشر</option></select>
-                    </div>
-                    <div class="form-group"><label>الفصل الجديد</label>
-                        <select id="update-className"><option value="">-- لا تغيير --</option><option value="أ">الفصل أ</option><option value="ب">الفصل ب</option><option value="ج">الفصل ج</option><option value="د">الفصل د</option><option value="هـ">الفصل هـ</option><option value="و">الفصل و</option></select>
-                    </div>
-                </div>
-                <button class="btn-submit" id="updateStudentBtn" onclick="updateStudent()"><i class="fas fa-save"></i> حفظ التعديلات</button>
-                <div class="success-msg" id="update-success"></div>
-                <div class="error-msg" id="update-error"></div>
-            </div>
-        </div>
-
-        <!-- Panel: Delete Student -->
-        <div class="admin-panel" id="panel-delete-student">
-            <div class="admin-form-card">
-                <h3><i class="fas fa-user-times"></i> حذف طالب</h3>
-                <p style="color:#721c24;background:#fff5f5;padding:1rem;border-radius:10px;margin-bottom:1.5rem;font-size:0.95rem;"><i class="fas fa-exclamation-triangle"></i> تحذير: حذف الطالب سيحذف جميع نتائجه بشكل نهائي ولا يمكن التراجع!</p>
-                <div class="form-grid">
-                    <div class="form-group full-width"><label>رقم الطالب المراد حذفه *</label><input type="text" id="delete-studentId" placeholder="مثال: MA001"></div>
-                </div>
-                <button class="btn-danger" id="deleteStudentBtn" onclick="deleteStudent()"><i class="fas fa-trash-alt"></i> حذف الطالب نهائياً</button>
-                <div class="success-msg" id="delete-student-success"></div>
-                <div class="error-msg" id="delete-student-error"></div>
-            </div>
-        </div>
-
-        <!-- Panel: All Results -->
-        <div class="admin-panel" id="panel-all-results">
-            <div class="admin-form-card">
-                <h3><i class="fas fa-table"></i> كل نتائج الطلاب</h3>
-                <div class="form-grid" style="margin-bottom:1rem;">
-                    <div class="form-group"><label>الصف</label><select id="filter-grade"><option value="">-- كل الصفوف --</option><option value="10">الصف العاشر</option><option value="11">الصف الحادي عشر</option><option value="12">الصف الثاني عشر</option></select></div>
-                    <div class="form-group"><label>الفصل</label><select id="filter-class"><option value="">-- كل الفصول --</option><option value="أ">الفصل أ</option><option value="ب">الفصل ب</option><option value="ج">الفصل ج</option><option value="د">الفصل د</option><option value="هـ">الفصل هـ</option><option value="و">الفصل و</option></select></div>
-                    <div class="form-group"><label>العام الدراسي</label><input type="text" id="filter-year" placeholder="مثال: 2025-2026"></div>
-                    <div class="form-group"><label>الفصل الدراسي</label><select id="filter-term"><option value="">-- كل الفصول --</option><option value="Term 1">الفصل الأول</option><option value="Term 2">الفصل الثاني</option><option value="Term 3">الفصل الثالث</option></select></div>
-                </div>
-                <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-bottom:1rem;">
-                    <button class="btn-submit" onclick="loadAllResults()" style="margin-top:0;"><i class="fas fa-sync-alt"></i> تحميل النتائج</button>
-                </div>
-                <div class="search-bar"><i class="fas fa-search"></i><input type="text" id="results-search" placeholder="ابحث بالاسم أو الرقم أو المادة..." oninput="filterResultsTable()"></div>
-                <div class="table-stats"><div class="stat-badge" id="results-count"><i class="fas fa-list"></i> إجمالي النتائج: 0</div></div>
-                <div class="table-wrap">
-                    <table class="admin-data-table" id="allResultsTable">
-                        <thead><tr><th>#</th><th>رقم الطالب</th><th>الاسم</th><th>الصف</th><th>الفصل</th><th>المادة</th><th>الدرجة</th><th>التقدير</th><th>الفصل الدراسي</th><th>العام</th></tr></thead>
-                        <tbody id="allResultsBody"><tr><td colspan="10" style="text-align:center;padding:2rem;color:#999;">اضغط "تحميل النتائج" لعرض البيانات</td></tr></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Panel: Delete Results -->
-        <div class="admin-panel" id="panel-delete-results">
-            <div class="admin-form-card">
-                <h3><i class="fas fa-trash-alt"></i> حذف نتائج طالب</h3>
-                <p style="color:#856404;background:#fff8e1;padding:1rem;border-radius:10px;margin-bottom:1.5rem;font-size:0.95rem;"><i class="fas fa-info-circle"></i> يمكنك حذف نتيجة مادة معينة أو حذف جميع نتائج الطالب.</p>
-                <div class="form-grid">
-                    <div class="form-group full-width"><label>رقم الطالب *</label><input type="text" id="del-res-studentId" placeholder="مثال: MA001"></div>
-                    <div class="form-group"><label>المادة (اتركها فارغة لحذف الكل)</label>
-                        <select id="del-res-subject">
-                            <option value="">-- حذف جميع النتائج --</option>
-                            <option value="القرآن الكريم">القرآن الكريم</option>
-                            <option value="القراءة المجودة">القراءة المجودة</option>
-                            <option value="التفسير">التفسير</option>
-                            <option value="أصول التفسير">أصول التفسير</option>
-                            <option value="الحديث">الحديث</option>
-                            <option value="أصول الحديث">أصول الحديث</option>
-                            <option value="التوحيد">التوحيد</option>
-                            <option value="الفقه">الفقه</option>
-                            <option value="الفرائض">الفرائض</option>
-                            <option value="النحو">النحو</option>
-                            <option value="البلاغة">البلاغة</option>
-                            <option value="الأدب">الأدب</option>
-                            <option value="المطالعة">المطالعة</option>
-                            <option value="الإنشاء">الإنشاء</option>
-                            <option value="التاريخ">التاريخ</option>
-                            <option value="علم النفس">علم النفس</option>
-                            <option value="الجغرافيا">الجغرافيا</option>
-                            <option value="التربية">التربية</option>
-                            <option value="English Language">English Language</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>العام الدراسي (مطلوب عند تحديد مادة)</label><input type="text" id="del-res-year" placeholder="مثال: 2025-2026"></div>
-                    <div class="form-group"><label>الفصل الدراسي (مطلوب عند تحديد مادة)</label>
-                        <select id="del-res-term"><option value="">-- اختر الفصل --</option><option value="Term 1">الفصل الأول</option><option value="Term 2">الفصل الثاني</option><option value="Term 3">الفصل الثالث</option></select>
-                    </div>
-                </div>
-                <button class="btn-danger" id="deleteResultsBtn" onclick="deleteResults()"><i class="fas fa-trash-alt"></i> حذف النتائج</button>
-                <div class="success-msg" id="del-res-success"></div>
-                <div class="error-msg" id="del-res-error"></div>
-            </div>
-        </div>
-
-        <!-- Panel: Reset Password -->
-        <div class="admin-panel" id="panel-reset-password">
-            <div class="admin-form-card">
-                <h3><i class="fas fa-key"></i> إعادة تعيين كلمة مرور الطالب</h3>
-                <div class="form-grid">
-                    <div class="form-group"><label>رقم الطالب *</label><input type="text" id="reset-studentId" placeholder="مثال: MA001"></div>
-                    <div class="form-group"><label>كلمة المرور الجديدة *</label><input type="text" id="reset-newPassword" placeholder="كلمة المرور الجديدة"></div>
-                </div>
-                <button class="btn-submit" id="resetPasswordBtn" onclick="resetPassword()"><i class="fas fa-key"></i> تعيين كلمة المرور</button>
-                <div class="success-msg" id="reset-success"></div>
-                <div class="error-msg" id="reset-error"></div>
             </div>
         </div>
     </div>
@@ -1016,7 +491,6 @@
 </a>
 
 <div class="container">
-    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-left">
             <div class="lang-switch">
@@ -1035,7 +509,6 @@
         </div>
     </nav>
 
-    <!-- SEARCH -->
     <div class="search-section">
         <div class="search-container" id="searchContainer">
             <div class="search-wrapper">
@@ -1046,7 +519,6 @@
         </div>
     </div>
 
-    <!-- TABS -->
     <div class="tabs-section">
         <div class="tabs-header">
             <div class="tab-item active" data-tab="tab1"><i class="fas fa-home"></i><span class="tab-text" data-en="Home" data-ar="الرئيسية">الرئيسية</span></div>
@@ -1061,7 +533,6 @@
             <div class="tab-pane active" id="tab1">
                 <div class="nusrat-image-box">
                     <div class="carousel-container" id="meccaCarousel">
-                        <!-- ✅ FIXED: Single carousel-slides wrapper, dots outside it -->
                         <div class="carousel-slides">
                             <div class="carousel-slide active"><div class="image-container"><img src="STAFF.jpeg" alt="Staff"></div></div>
                             <div class="carousel-slide"><div class="image-container"><img src="t1.jpeg" alt="Teacher 1"></div></div>
@@ -1091,8 +562,8 @@
                         <div class="welcome-content">
                             <h2 class="welcome-title" data-en="Welcome to Tallinding Islamic Institute" data-ar="مرحباً بكم في معهد بتلند كنجا الإسلامي"><span>مرحباً بكم في معهد بتلند كنجا الإسلامي</span></h2>
                             <div class="welcome-text">
-                                <p data-en="Tallinding Islamic Institution has been serving the community for years, providing quality Islamic education combined with academic excellence." data-ar="يخدم معهد بتلند كنجا الإسلامي المجتمع لسنوات، حيث يوفر تعليمًا إسلاميًا عالي الجودة مقترنًا بالتميز الأكاديمي.">يخدم معهد بتلند كنجا الإسلامي المجتمع لسنوات، حيث يوفر تعليمًا إسلاميًا عالي الجودة مقترنًا بالتميز الأكاديمي.</p>
-                                <p data-en="We are committed to nurturing young minds with both religious knowledge and modern education." data-ar="نحن ملتزمون برعاية العقول الشابة بالمعرفة الدينية والتعليم الحديث على حد سواء.">نحن ملتزمون برعاية العقول الشابة بالمعرفة الدينية والتعليم الحديث على حد سواء.</p>
+                                <p data-en="Tallinding Islamic Institution has been serving the community for years." data-ar="يخدم معهد بتلند كنجا الإسلامي المجتمع لسنوات، حيث يوفر تعليمًا إسلاميًا عالي الجودة مقترنًا بالتميز الأكاديمي.">يخدم معهد بتلند كنجا الإسلامي المجتمع لسنوات، حيث يوفر تعليمًا إسلاميًا عالي الجودة مقترنًا بالتميز الأكاديمي.</p>
+                                <p data-en="We are committed to nurturing young minds." data-ar="نحن ملتزمون برعاية العقول الشابة بالمعرفة الدينية والتعليم الحديث على حد سواء.">نحن ملتزمون برعاية العقول الشابة بالمعرفة الدينية والتعليم الحديث على حد سواء.</p>
                             </div>
                             <div class="welcome-decoration"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         </div>
@@ -1103,8 +574,8 @@
                         <div class="mission-content">
                             <h3 data-en="OUR MISSION" data-ar="مَهَمَّتُنَا">مَهَمَّتُنَا</h3>
                             <ul class="mission-list-home">
-                                <li><i class="fas fa-check-circle"></i><span data-en="Promoting Islamic morals and values" data-ar="تعزيز الأخلاق والقيم الإسلامية في جميع جوانب التعليم">تعزيز الأخلاق والقيم الإسلامية في جميع جوانب التعليم</span></li>
-                                <li><i class="fas fa-check-circle"></i><span data-en="Fostering academic growth and intellectual development" data-ar="تعزيز النمو الأكاديمي والتطور الفكري">تعزيز النمو الأكاديمي والتطور الفكري</span></li>
+                                <li><i class="fas fa-check-circle"></i><span data-en="Promoting Islamic morals and values" data-ar="تعزيز الأخلاق والقيم الإسلامية">تعزيز الأخلاق والقيم الإسلامية في جميع جوانب التعليم</span></li>
+                                <li><i class="fas fa-check-circle"></i><span data-en="Fostering academic growth" data-ar="تعزيز النمو الأكاديمي والتطور الفكري">تعزيز النمو الأكاديمي والتطور الفكري</span></li>
                                 <li><i class="fas fa-check-circle"></i><span data-en="Nurturing responsible citizenship" data-ar="تنمية المواطنة المسؤولة والمشاركة المجتمعية">تنمية المواطنة المسؤولة والمشاركة المجتمعية</span></li>
                                 <li><i class="fas fa-check-circle"></i><span data-en="Providing a safe learning environment" data-ar="توفير بيئة تعليمية آمنة وداعمة">توفير بيئة تعليمية آمنة وداعمة</span></li>
                             </ul>
@@ -1116,9 +587,9 @@
                         <div class="vision-content">
                             <h3 data-en="OUR VISION" data-ar="رُؤْيَتُنَا">رُؤْيَتُنَا</h3>
                             <div class="vision-text">
-                                <p class="vision-main" data-en="To be a leading Islamic educational institution that produces well-rounded individuals." data-ar="أن نكون مؤسسة تعليمية إسلامية رائدة تُخرج أفرادًا متكاملين يتفوقون أكاديميًا ويجسدون القيم الإسلامية.">أن نكون مؤسسة تعليمية إسلامية رائدة تُخرج أفرادًا متكاملين يتفوقون أكاديميًا ويجسدون القيم الإسلامية.</p>
-                                <p class="vision-middle" data-en="We envision graduates recognized for knowledge, character, and commitment to community." data-ar="نتصور مستقبلًا حيث يتم التعرف على خريجينا لمعرفتهم وشخصيتهم والتزامهم بخدمة مجتمعاتهم.">نتصور مستقبلًا حيث يتم التعرف على خريجينا لمعرفتهم وشخصيتهم والتزامهم بخدمة مجتمعاتهم.</p>
-                                <p class="vision-last" data-en="Through continuous improvement, we strive to maintain our position as a trusted institution." data-ar="من خلال التحسين المستمر، نسعى للحفاظ على مكانتنا كمؤسسة موثوقة للتعليم الإسلامي في غامبيا.">من خلال التحسين المستمر، نسعى للحفاظ على مكانتنا كمؤسسة موثوقة للتعليم الإسلامي في غامبيا.</p>
+                                <p class="vision-main" data-en="To be a leading Islamic educational institution." data-ar="أن نكون مؤسسة تعليمية إسلامية رائدة تُخرج أفرادًا متكاملين.">أن نكون مؤسسة تعليمية إسلامية رائدة تُخرج أفرادًا متكاملين يتفوقون أكاديميًا ويجسدون القيم الإسلامية.</p>
+                                <p class="vision-middle" data-en="Graduates recognized for knowledge and character." data-ar="نتصور مستقبلًا حيث يتم التعرف على خريجينا لمعرفتهم وشخصيتهم والتزامهم بخدمة مجتمعاتهم.">نتصور مستقبلًا حيث يتم التعرف على خريجينا لمعرفتهم وشخصيتهم والتزامهم بخدمة مجتمعاتهم.</p>
+                                <p class="vision-last" data-en="Through continuous improvement." data-ar="من خلال التحسين المستمر، نسعى للحفاظ على مكانتنا كمؤسسة موثوقة.">من خلال التحسين المستمر، نسعى للحفاظ على مكانتنا كمؤسسة موثوقة للتعليم الإسلامي في غامبيا.</p>
                             </div>
                         </div>
                     </div>
@@ -1130,8 +601,8 @@
                 <div class="about-section" id="about-section">
                     <div class="about-content">
                         <h2><i class="fas fa-info-circle"></i> <span data-en="About Our Institute" data-ar="عن المعهد">عن المعهد</span></h2>
-                        <p data-en="Tallinding Islamic Institution has been serving the community for years." data-ar="يخدم معهد بتلند كنجا الإسلامي المجتمع لسنوات، حيث يوفر تعليمًا إسلاميًا عالي الجودة مقترنًا بالتميز الأكاديمي.">يخدم معهد بتلند كنجا الإسلامي المجتمع لسنوات، حيث يوفر تعليمًا إسلاميًا عالي الجودة مقترنًا بالتميز الأكاديمي.</p>
-                        <div class="about-highlight"><p data-en="Founded in 1963, we continue to uphold our commitment to excellence in Islamic education." data-ar="تأسسنا عام ١٩٦٣، ونواصل التمسك بالتزامنا بالتميز في التعليم الإسلامي.">تأسسنا عام ١٩٦٣، ونواصل التمسك بالتزامنا بالتميز في التعليم الإسلامي.</p></div>
+                        <p data-en="Tallinding Islamic Institution has been serving the community for years." data-ar="يخدم معهد بتلند كنجا الإسلامي المجتمع لسنوات، حيث يوفر تعليمًا إسلاميًا عالي الجودة.">يخدم معهد بتلند كنجا الإسلامي المجتمع لسنوات، حيث يوفر تعليمًا إسلاميًا عالي الجودة مقترنًا بالتميز الأكاديمي.</p>
+                        <div class="about-highlight"><p data-en="Founded in 1963." data-ar="تأسسنا عام ١٩٦٣، ونواصل التمسك بالتزامنا بالتميز في التعليم الإسلامي.">تأسسنا عام ١٩٦٣، ونواصل التمسك بالتزامنا بالتميز في التعليم الإسلامي.</p></div>
                     </div>
                 </div>
                 <div class="gambia-union-card" id="gambia-union-section" style="margin-top:2rem;">
@@ -1143,7 +614,7 @@
                         <div class="flag-item"><i class="fas fa-handshake"></i><span data-en="Unity" data-ar="الاتحاد">الاتحاد</span></div>
                         <div class="flag-item"><i class="fas fa-star-and-crescent"></i><span data-en="Islam" data-ar="الإسلام">الإسلام</span></div>
                     </div>
-                    <div class="union-description" data-en="In partnership with the Gambia Islamic Union, we are committed to providing authentic Islamic education." data-ar="بشراكة مع اتحاد غامبيا الإسلامي، نحن ملتزمون بتقديم تعليم إسلامي أصيل وتعزيز الوحدة داخل المجتمع المسلم.">بشراكة مع اتحاد غامبيا الإسلامي، نحن ملتزمون بتقديم تعليم إسلامي أصيل وتعزيز الوحدة داخل المجتمع المسلم.</div>
+                    <div class="union-description" data-en="In partnership with the Gambia Islamic Union." data-ar="بشراكة مع اتحاد غامبيا الإسلامي، نحن ملتزمون بتقديم تعليم إسلامي أصيل.">بشراكة مع اتحاد غامبيا الإسلامي، نحن ملتزمون بتقديم تعليم إسلامي أصيل وتعزيز الوحدة داخل المجتمع المسلم.</div>
                     <div class="union-badge"><i class="fas fa-certificate"></i><span data-en="Recognized by the Supreme Islamic Council" data-ar="معترف به من قبل المجلس الإسلامي الأعلى">معترف به من قبل المجلس الإسلامي الأعلى</span></div>
                 </div>
             </div>
@@ -1153,7 +624,7 @@
                 <div class="admission-section" id="admission-section">
                     <div class="admission-header">
                         <h2><i class="fas fa-graduation-cap"></i><span data-en="Admissions 2026" data-ar="القبول ٢٠٢٦">القبول ٢٠٢٦</span></h2>
-                        <p data-en="Applications now open for the 2026 academic year." data-ar="انضم إلى مجتمعنا من المتعلمين. الطلبات الآن مفتوحة للعام الأكاديمي ٢٠٢٦.">انضم إلى مجتمعنا من المتعلمين. الطلبات الآن مفتوحة للعام الأكاديمي ٢٠٢٦.</p>
+                        <p data-en="Applications now open for 2026." data-ar="انضم إلى مجتمعنا. الطلبات الآن مفتوحة للعام الأكاديمي ٢٠٢٦.">انضم إلى مجتمعنا من المتعلمين. الطلبات الآن مفتوحة للعام الأكاديمي ٢٠٢٦.</p>
                     </div>
                     <div class="programs-card" id="programs-section">
                         <div class="requirement-icon"><i class="fas fa-book-open"></i></div>
@@ -1258,8 +729,8 @@
                             <h3>بوابة الطالب</h3>
                             <p>سجل الدخول للوصول إلى نتائجك الدراسية.</p>
                             <div class="login-form">
-                                <input type="text" id="student-id-input" placeholder="رقم الطالب / Student ID">
-                                <input type="password" id="student-pass-input" placeholder="كلمة المرور / Password">
+                                <input type="text" id="student-id-input" placeholder="رقم الطالب / Student ID" autocomplete="username">
+                                <input type="password" id="student-pass-input" placeholder="كلمة المرور / Password" autocomplete="current-password">
                                 <button id="studentLoginBtn" onclick="studentLogin()"><i class="fas fa-sign-in-alt"></i><span>تسجيل الدخول</span></button>
                             </div>
                             <div class="login-error" id="student-login-error"></div>
@@ -1297,6 +768,20 @@
 </footer>
 
 <script>
+// ===== TOKEN STORAGE (sessionStorage — cleared when tab closes) =====
+// We use sessionStorage, not localStorage, so tokens don't persist forever.
+function saveStudentToken(token) { sessionStorage.setItem('studentToken', token); }
+function getStudentToken()      { return sessionStorage.getItem('studentToken'); }
+function clearStudentToken()    { sessionStorage.removeItem('studentToken'); }
+
+// Authenticated fetch wrapper — attaches JWT to every request
+function authFetch(url, options = {}) {
+  const token = getStudentToken();
+  const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+  if (token) headers['Authorization'] = 'Bearer ' + token;
+  return fetch(url, { ...options, headers });
+}
+
 (function() {
     'use strict';
 
@@ -1324,7 +809,7 @@
     // CAROUSEL
     let currentSlideIndex = 0;
     const slides = document.querySelectorAll('.carousel-slide');
-    const dots = document.querySelectorAll('.dot');
+    const dots   = document.querySelectorAll('.dot');
     function showSlide(index) {
         if (!slides.length) return;
         if (index >= slides.length) index = 0;
@@ -1335,7 +820,7 @@
         if (dots[index]) dots[index].classList.add('active');
         currentSlideIndex = index;
     }
-    window.changeSlide = d => showSlide(currentSlideIndex + d);
+    window.changeSlide  = d => showSlide(currentSlideIndex + d);
     window.currentSlide = i => showSlide(i - 1);
     let slideInterval = setInterval(() => showSlide(currentSlideIndex + 1), 3000);
     const carousel = document.querySelector('.carousel-container');
@@ -1346,7 +831,7 @@
     showSlide(0);
 
     // SEARCH
-    const searchInput = document.getElementById('searchInput');
+    const searchInput   = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
     const searchDb = [
         { title:{en:'Welcome',ar:'الرئيسية'}, category:{en:'Home',ar:'الرئيسية'}, preview:{en:'Islamic education',ar:'التعليم الإسلامي'}, tab:'tab1', elementId:'welcome-section', keywords:['welcome','home','مرحبا','الرئيسية','تعليم'] },
@@ -1371,17 +856,17 @@
             if (q.length < 2) { searchResults.classList.remove('active'); return; }
             const results = searchDb.filter(item => item.keywords.some(k => k.toLowerCase().includes(q))).slice(0, 5);
             if (results.length > 0) {
-                searchResults.innerHTML = results.map(r => '<div class="search-result-item" data-tab="'+(r.tab||'')+'" data-element="'+(r.elementId||'')+'"><div class="result-category"><i class="fas fa-tag"></i> '+r.category[lang]+'</div><div class="result-title">'+r.title[lang]+'</div><div class="result-preview">'+r.preview[lang]+'</div></div>').join('');
+                searchResults.innerHTML = results.map(r => `<div class="search-result-item" data-tab="${r.tab||''}" data-element="${r.elementId||''}"><div class="result-category"><i class="fas fa-tag"></i> ${r.category[lang]}</div><div class="result-title">${r.title[lang]}</div><div class="result-preview">${r.preview[lang]}</div></div>`).join('');
                 searchResults.classList.add('active');
                 document.querySelectorAll('.search-result-item').forEach(item => {
                     item.addEventListener('click', function() {
                         const tabId = this.dataset.tab;
-                        if (tabId) { const tabItem = document.querySelector('.tab-item[data-tab="'+tabId+'"]'); if (tabItem) { tabItem.click(); setTimeout(() => scrollToAndHighlight(this.dataset.element), 100); } }
+                        if (tabId) { const tabItem = document.querySelector(`.tab-item[data-tab="${tabId}"]`); if (tabItem) { tabItem.click(); setTimeout(() => scrollToAndHighlight(this.dataset.element), 100); } }
                         searchInput.value = ''; searchResults.classList.remove('active');
                     });
                 });
             } else {
-                searchResults.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> '+(lang==='en'?'No results found':'لا توجد نتائج')+'</div>';
+                searchResults.innerHTML = `<div class="no-results"><i class="fas fa-search"></i> ${lang==='en'?'No results found':'لا توجد نتائج'}</div>`;
                 searchResults.classList.add('active');
             }
         });
@@ -1393,27 +878,30 @@
 // ===== STUDENT LOGIN =====
 async function studentLogin() {
     const studentId = document.getElementById('student-id-input').value.trim();
-    const password = document.getElementById('student-pass-input').value.trim();
-    const btn = document.getElementById('studentLoginBtn');
-    const errorEl = document.getElementById('student-login-error');
+    const password  = document.getElementById('student-pass-input').value;
+    const btn       = document.getElementById('studentLoginBtn');
+    const errorEl   = document.getElementById('student-login-error');
     errorEl.classList.remove('show');
     if (!studentId || !password) { errorEl.textContent = 'يرجى إدخال رقم الطالب وكلمة المرور'; errorEl.classList.add('show'); return; }
     btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحقق...';
     try {
-        const res = await fetch('/api/student-login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({studentId,password}) });
+        const res  = await fetch('/api/student-login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({studentId, password}) });
         const data = await res.json();
-        if (data.success) showStudentDashboard(data.student);
-        else { errorEl.textContent = data.error || 'بيانات غير صحيحة'; errorEl.classList.add('show'); }
-    } catch(err) { errorEl.textContent = 'خطأ في الاتصال. حاول مرة أخرى.'; errorEl.classList.add('show'); }
+        if (data.success && data.token) {
+            saveStudentToken(data.token);
+            showStudentDashboard(data.student);
+        } else {
+            errorEl.textContent = data.error || 'بيانات غير صحيحة';
+            errorEl.classList.add('show');
+        }
+    } catch { errorEl.textContent = 'خطأ في الاتصال. حاول مرة أخرى.'; errorEl.classList.add('show'); }
     btn.disabled = false; btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> تسجيل الدخول';
 }
 
 // ===== ARABIC NUMBER WORDS =====
 function toArabicWords(n) {
     if (n === 0) return 'صفر';
-    var ones = ['','واحد','اثنان','ثلاثة','أربعة','خمسة','ستة','سبعة','ثمانية','تسعة','عشرة',
-                'أحد عشر','اثنا عشر','ثلاثة عشر','أربعة عشر','خمسة عشر','ستة عشر',
-                'سبعة عشر','ثمانية عشر','تسعة عشر'];
+    var ones = ['','واحد','اثنان','ثلاثة','أربعة','خمسة','ستة','سبعة','ثمانية','تسعة','عشرة','أحد عشر','اثنا عشر','ثلاثة عشر','أربعة عشر','خمسة عشر','ستة عشر','سبعة عشر','ثمانية عشر','تسعة عشر'];
     var tens = ['','','عشرون','ثلاثون','أربعون','خمسون','ستون','سبعون','ثمانون','تسعون'];
     var hundreds = ['','مائة','مئتان','ثلاثمائة','أربعمائة','خمسمائة','ستمائة','سبعمائة','ثمانمائة','تسعمائة'];
     if (n < 20) return ones[n];
@@ -1424,56 +912,53 @@ function toArabicWords(n) {
     return n.toString();
 }
 
-// ===== SUBJECT ORDER =====
-var SUBJECT_ORDER = [
-    'القرآن الكريم','القراءة المجودة','التفسير','أصول التفسير',
-    'الحديث','أصول الحديث','التوحيد','الفقه','الفرائض',
-    'النحو','البلاغة','الأدب','المطالعة','الإنشاء',
-    'التاريخ','علم النفس','الجغرافيا','التربية','English Language'
-];
+var SUBJECT_ORDER = ['القرآن الكريم','القراءة المجودة','التفسير','أصول التفسير','الحديث','أصول الحديث','التوحيد','الفقه','الفرائض','النحو','البلاغة','الأدب','المطالعة','الإنشاء','التاريخ','علم النفس','الجغرافيا','التربية','English Language'];
 
 // ===== STUDENT DASHBOARD =====
 let currentStudentData = null;
-let allStudentResults = [];
+let allStudentResults  = [];
 
 async function showStudentDashboard(student) {
     currentStudentData = student;
-    document.getElementById('dashStudentName').textContent = student.fullName;
+    // Populate profile (use textContent everywhere — never innerHTML for user data)
+    document.getElementById('dashStudentName').textContent    = student.fullName;
     document.getElementById('dashStudentNameBig').textContent = student.fullName;
-    document.getElementById('dashStudentId').textContent = 'رقم الطالب: ' + student.studentId;
-    document.getElementById('dashStudentGrade').textContent = 'المستوى: ' + (student.gradeLevel || '---');
-    document.getElementById('dashStudentDob').textContent = student.dateOfBirth || '---';
-    document.getElementById('dashStudentPhone').textContent = student.studentPhone || '---';
-    document.getElementById('dashGuardianName').textContent = student.guardianName || '---';
-    document.getElementById('dashGuardianPhone').textContent = student.guardianPhone || '---';
+    document.getElementById('dashStudentId').textContent      = 'رقم الطالب: ' + student.studentId;
+    document.getElementById('dashStudentGrade').textContent   = 'المستوى: ' + (student.gradeLevel || '---');
+    document.getElementById('dashStudentDob').textContent     = student.dateOfBirth || '---';
+    document.getElementById('dashStudentPhone').textContent   = student.studentPhone || '---';
+    document.getElementById('dashGuardianName').textContent   = student.guardianName || '---';
+    document.getElementById('dashGuardianPhone').textContent  = student.guardianPhone || '---';
     document.getElementById('dashStudentAddress').textContent = student.address || '---';
     document.getElementById('studentDashboard').classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // Fetch results using the JWT token — no studentId in URL needed
     try {
-        const res = await fetch('/api/get-results?studentId=' + student.studentId);
+        const res  = await authFetch('/api/get-results');
         const data = await res.json();
         allStudentResults = data.success ? data.results : [];
-    } catch(err) { allStudentResults = []; }
+    } catch { allStudentResults = []; }
     renderTermCards();
 }
 
 function renderTermCards() {
-    var grid = document.getElementById('termCardsGrid');
+    var grid  = document.getElementById('termCardsGrid');
     var years = [];
     allStudentResults.forEach(function(r) { if (years.indexOf(r.academic_year) === -1) years.push(r.academic_year); });
     if (allStudentResults.length === 0) {
         grid.innerHTML = '<div style="grid-column:span 2;text-align:center;padding:3rem;color:#888;"><i class="fas fa-inbox" style="font-size:3rem;color:#FFB347;display:block;margin-bottom:1rem;"></i><p>لا توجد نتائج متاحة حتى الآن.</p></div>';
         return;
     }
-    var year = years[0];
+    var year     = years[0];
     var termList = [['Term 1','الفصل الأول'],['Term 2','الفصل الثاني']];
-    var html = '';
+    var html     = '';
     termList.forEach(function(t) {
         var term = t[0], termName = t[1];
         var filtered = allStudentResults.filter(function(r) { return r.term === term && r.academic_year === year; });
-        var count = filtered.length;
-        var total = filtered.reduce(function(s, r) { return s + (r.score || 0); }, 0);
-        var hasData = count > 0;
+        var count    = filtered.length;
+        var total    = filtered.reduce(function(s, r) { return s + (r.score || 0); }, 0);
+        var hasData  = count > 0;
         var bannerBg = hasData ? 'linear-gradient(135deg,#1e5a3a,#2b7a4f)' : '#b0b0b0';
         var cardBorder = hasData ? '#d0e8d8' : '#e5e5e5';
         html += '<div class="term-card" data-term="'+term+'" data-year="'+year+'" data-has="'+(hasData?'1':'0')+'" style="background:#fff;border-radius:1.2rem;overflow:hidden;cursor:'+(hasData?'pointer':'default')+';transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.08);border:1px solid '+cardBorder+';">';
@@ -1482,7 +967,7 @@ function renderTermCards() {
         if (hasData) {
             html += '<div style="width:65px;height:80px;background:white;border:2px solid #dce8dc;border-radius:8px;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.07);"><i class="fas fa-file-pdf" style="font-size:2rem;color:#e53e3e;"></i><div style="font-size:0.6rem;color:#888;margin-top:0.3rem;font-weight:700;letter-spacing:1px;">PDF</div></div><div style="margin-top:0.8rem;font-size:0.82rem;color:#666;">كشف الدرجات جاهز</div>';
         } else {
-            html += '<div style="width:65px;height:80px;background:#ebebeb;border:2px dashed #ccc;border-radius:8px;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;"><i class="fas fa-file" style="font-size:2rem;color:#ccc;"></i><div style="font-size:0.6rem;color:#ccc;margin-top:0.3rem;letter-spacing:1px;">PDF</div></div><div style="margin-top:0.8rem;font-size:0.82rem;color:#bbb;">لا توجد نتائج</div>';
+            html += '<div style="width:65px;height:80px;background:#ebebeb;border:2px dashed #ccc;border-radius:8px;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;"><i class="fas fa-file" style="font-size:2rem;color:#ccc;"></i></div><div style="margin-top:0.8rem;font-size:0.82rem;color:#bbb;">لا توجد نتائج</div>';
         }
         html += '</div><div style="padding:1rem 1.2rem;background:#fff;text-align:center;">';
         if (hasData) {
@@ -1493,60 +978,55 @@ function renderTermCards() {
     });
     grid.innerHTML = html;
     grid.querySelectorAll('.term-card[data-has="1"]').forEach(function(card) {
-        card.addEventListener('mouseover', function() { this.style.transform='translateY(-6px)'; this.style.boxShadow='0 16px 40px rgba(30,90,58,0.18)'; });
-        card.addEventListener('mouseout', function() { this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)'; });
-        card.addEventListener('click', function() { showTermReport(this.dataset.term, this.dataset.year); });
+        card.addEventListener('mouseover',  function() { this.style.transform='translateY(-6px)'; this.style.boxShadow='0 16px 40px rgba(30,90,58,0.18)'; });
+        card.addEventListener('mouseout',   function() { this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 12px rgba(0,0,0,0.08)'; });
+        card.addEventListener('click',      function() { showTermReport(this.dataset.term, this.dataset.year); });
     });
 }
 
-// ===== SHOW TERM REPORT =====
 function showTermReport(term, year) {
     var results = allStudentResults.filter(function(r) { return r.term === term && r.academic_year === year; });
     var student = currentStudentData;
-
     results.sort(function(a, b) {
         var ai = SUBJECT_ORDER.indexOf(a.subject); var bi = SUBJECT_ORDER.indexOf(b.subject);
         if (ai === -1) ai = 999; if (bi === -1) bi = 999;
         return ai - bi;
     });
-
     var today = new Date();
     var dateStr = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
-
     var total = results.reduce(function(s, r) { return s + (r.score || 0); }, 0);
     var numSubjects = results.length;
     var maxTotal = numSubjects * 100;
-    var minTotal = numSubjects * 50;
     var pct = maxTotal > 0 ? (total / maxTotal) * 100 : 0;
     var gradeLabel = pct >= 90 ? 'ممتاز' : pct >= 75 ? 'جيد جداً' : pct >= 60 ? 'جيد' : pct >= 50 ? 'مقبول' : 'ضعيف';
-
     var gradeNames = {'10':'الصف العاشر','11':'الصف الحادي عشر','12':'الصف الثاني عشر'};
-    var gradeStr = gradeNames[String(student.gradeLevel)] || ('الصف ' + (student.gradeLevel || ''));
-    var classStr = student.className ? ' (' + student.className + ')' : '';
-    var termLabel = term === 'Term 1' ? 'الفصل الأول' : term === 'Term 2' ? 'الفصل الثاني' : 'الفصل الثالث';
+    var gradeStr   = gradeNames[String(student.gradeLevel)] || ('الصف ' + (student.gradeLevel || ''));
+    var classStr   = student.className ? ' (' + student.className + ')' : '';
+    var termLabel  = term === 'Term 1' ? 'الفصل الأول' : term === 'Term 2' ? 'الفصل الثاني' : 'الفصل الثالث';
 
+    // Use textContent for all user data — never innerHTML
     document.getElementById('reportStudentName').textContent = student.fullName;
-    document.getElementById('reportClassName').textContent = gradeStr + classStr;
-    document.getElementById('reportDateLeft').textContent = dateStr;
-
+    document.getElementById('reportClassName').textContent   = gradeStr + classStr;
+    document.getElementById('reportDateLeft').textContent    = dateStr;
     var tb = document.getElementById('toolbarTitle');
     if (tb) tb.textContent = student.fullName + ' — ' + termLabel + ' ' + year;
 
-    document.getElementById('attestationText').innerHTML =
-        'تشهد إدارة المعهد الإسلامي بتلند كنجا بأن الطالب: <strong>' + student.fullName +
-        '</strong> قد نجح في امتحان الدور الأول للعام الدراسي <strong>' + year +
-        '</strong>م. بتقدير: <strong>' + gradeLabel + '</strong> وبناء عليه استحق نيل هذه الوثيقة.';
+    // Attestation text (safe — all values are server-validated)
+    document.getElementById('attestationText').textContent =
+        'تشهد إدارة المعهد الإسلامي بتلند كنجا بأن الطالب: ' + student.fullName +
+        ' قد نجح في امتحان الدور الأول للعام الدراسي ' + year +
+        'م. بتقدير: ' + gradeLabel + ' وبناء عليه استحق نيل هذه الوثيقة.';
 
-    document.getElementById('reportRank').textContent = student.rank || '---';
+    document.getElementById('reportRank').textContent       = student.rank || '---';
     document.getElementById('reportClassCount').textContent = student.classTotal || '---';
     document.getElementById('reportGradeLabel').textContent = gradeLabel;
-    document.getElementById('reportPassCount').textContent = student.passTotal || '---';
+    document.getElementById('reportPassCount').textContent  = student.passTotal || '---';
 
     var rows = '';
     results.forEach(function(r, i) {
-        var scoreNum = (r.score !== undefined && r.score !== null) ? r.score : '';
+        var scoreNum  = (r.score !== undefined && r.score !== null) ? r.score : '';
         var scoreWord = (typeof scoreNum === 'number') ? toArabicWords(scoreNum) : '';
-        var isEnglish = r.subject === 'English Language' || r.subject === 'اللغة الإنجليزية';
+        var isEnglish = r.subject === 'English Language';
         var subjectCell = isEnglish
             ? '<td class="rpt-subject-en">' + r.subject + '</td>'
             : '<td class="rpt-subject-cell">' + r.subject + '</td>';
@@ -1556,26 +1036,23 @@ function showTermReport(term, year) {
     });
     var totalWord = toArabicWords(total);
     rows += '<tr style="font-size:15px;"><td colspan="2">الـمـجـمـوع الـكـلـي</td>' +
-            '<td>' + maxTotal + '</td><td>' + minTotal + '</td>' +
+            '<td>' + maxTotal + '</td><td>' + (numSubjects*50) + '</td>' +
             '<td>' + total.toLocaleString() + '</td><td>' + totalWord + '</td><td>&nbsp;</td></tr>';
     document.getElementById('reportTableBody').innerHTML = rows;
 
     document.getElementById('studentDashboard').style.visibility = 'hidden';
-    var overlay = document.getElementById('reportOverlay');
-    overlay.classList.add('active');
+    document.getElementById('reportOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
     scaleA4ToCanvas();
 }
 
 function scaleA4ToCanvas() {
     var canvas = document.getElementById('reportCanvas');
-    var sheet = document.getElementById('a4Report');
+    var sheet  = document.getElementById('a4Report');
     if (!canvas || !sheet) return;
     sheet.style.transform = 'scale(1)';
-    var canvasW = canvas.clientWidth - 40;
-    var sheetW = sheet.offsetWidth;
-    var scale = Math.min(1, canvasW / sheetW);
-    sheet.style.transform = 'scale(' + scale + ')';
+    var scale = Math.min(1, (canvas.clientWidth - 40) / sheet.offsetWidth);
+    sheet.style.transform  = 'scale(' + scale + ')';
     sheet.style.marginBottom = '-' + (sheet.offsetHeight * (1 - scale)) + 'px';
 }
 
@@ -1587,280 +1064,37 @@ function backToTerms() {
 
 function printReport() {
     var sheet = document.getElementById('a4Report');
-    var prevTransform = sheet.style.transform;
-    var prevMargin = sheet.style.marginBottom;
+    var prev  = { transform: sheet.style.transform, marginBottom: sheet.style.marginBottom };
     sheet.style.transform = 'scale(1)';
     sheet.style.marginBottom = '0';
     var content = sheet.outerHTML;
-    sheet.style.transform = prevTransform;
-    sheet.style.marginBottom = prevMargin;
+    sheet.style.transform    = prev.transform;
+    sheet.style.marginBottom = prev.marginBottom;
 
     var studentName = currentStudentData ? currentStudentData.fullName : 'الطالب';
     var win = window.open('', '_blank');
     if (!win) { alert('يرجى السماح بالنوافذ المنبثقة لطباعة التقرير'); return; }
 
-    var css = '';
-    css += '@page{size:A4;margin:0;}';
-    css += '*{box-sizing:border-box;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}';
-    css += 'body{background:white;margin:0;padding:0;font-family:Arial,sans-serif;color:#000;}';
-    css += '#a4Report{background:#fff!important;width:210mm;min-height:297mm;border:2.5pt solid #000;padding:12mm 15mm;position:relative;display:flex;flex-direction:column;font-family:Arial,sans-serif;color:#000;font-size:13px;box-sizing:border-box;direction:rtl;transform:none!important;margin:0!important;}';
-    css += '.rpt-header-section{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;width:100%;}';
-    css += '.rpt-left{text-align:right;direction:rtl;font-size:13px;font-weight:bold;line-height:1.7;width:33%;}';
-    css += '.rpt-center{text-align:center;width:34%;}';
-    css += '.rpt-right{text-align:left;direction:ltr;font-size:12px;font-weight:bold;line-height:1.7;width:33%;}';
-    css += '.rpt-bismillah{font-size:11px;font-weight:bold;margin-bottom:5px;}';
-    css += '.rpt-logo-img{width:70px;height:70px;object-fit:contain;margin:5px auto;display:block;}';
-    css += '.rpt-title-box{text-align:center;font-size:20px;font-weight:bold;text-decoration:underline;text-underline-offset:6px;margin:8px 0 12px;}';
-    css += '.rpt-info-box{border:2pt solid #000;padding:10px 12px;margin-bottom:12px;line-height:1.8;font-size:13px;}';
-    css += '.rpt-info-stats{display:flex;justify-content:space-between;margin-top:8px;font-size:13px;font-weight:bold;}';
-    css += '.rpt-marks-table{width:100%;border-collapse:collapse;border:2pt solid #000;margin-top:0;font-size:13px;}';
-    css += '.rpt-marks-table th,.rpt-marks-table td{border:1.2pt solid #000;padding:6px 4px;text-align:center;}';
-    css += '.rpt-marks-table th{background:#e8e8e8;}';
-    css += '.rpt-subject-cell{text-align:right;padding-right:12px!important;}';
-    css += '.rpt-subject-en{text-align:left;padding-left:12px!important;direction:ltr;}';
-    css += '.rpt-footer{margin-top:auto;display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;padding-top:25px;font-size:13px;}';
-    css += '.rpt-sig-underline{margin-top:45px;border-top:2pt solid #000;width:80%;margin:45px auto 0 auto;}';
-    css += '.rpt-stamp-placeholder{height:90px;}';
+    var css = '@page{size:A4;margin:0;}*{box-sizing:border-box;}body{background:white;margin:0;padding:0;font-family:Arial,sans-serif;color:#000;}#a4Report{background:#fff!important;width:210mm;min-height:297mm;border:2.5pt solid #000;padding:12mm 15mm;position:relative;display:flex;flex-direction:column;font-family:Arial,sans-serif;color:#000;font-size:13px;box-sizing:border-box;direction:rtl;transform:none!important;margin:0!important;}.rpt-header-section{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;width:100%;}.rpt-left{text-align:right;direction:rtl;font-size:13px;font-weight:bold;line-height:1.7;width:33%;}.rpt-center{text-align:center;width:34%;}.rpt-right{text-align:left;direction:ltr;font-size:12px;font-weight:bold;line-height:1.7;width:33%;}.rpt-bismillah{font-size:11px;font-weight:bold;margin-bottom:5px;}.rpt-logo-img{width:70px;height:70px;object-fit:contain;margin:5px auto;display:block;}.rpt-title-box{text-align:center;font-size:20px;font-weight:bold;text-decoration:underline;text-underline-offset:6px;margin:8px 0 12px;}.rpt-info-box{border:2pt solid #000;padding:10px 12px;margin-bottom:12px;line-height:1.8;font-size:13px;}.rpt-info-stats{display:flex;justify-content:space-between;margin-top:8px;font-size:13px;font-weight:bold;}.rpt-marks-table{width:100%;border-collapse:collapse;border:2pt solid #000;margin-top:0;font-size:13px;}.rpt-marks-table th,.rpt-marks-table td{border:1.2pt solid #000;padding:6px 4px;text-align:center;}.rpt-marks-table th{background:#e8e8e8;}.rpt-subject-cell{text-align:right;padding-right:12px!important;}.rpt-subject-en{text-align:left;padding-left:12px!important;direction:ltr;}.rpt-footer{margin-top:auto;display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;padding-top:25px;font-size:13px;}.rpt-sig-underline{margin-top:45px;border-top:2pt solid #000;width:80%;margin:45px auto 0 auto;}.rpt-stamp-placeholder{height:90px;}';
 
-    var html = '<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8">';
-    html += '<title>كشف الدرجات — ' + studentName + '</title>';
-    html += '<style>' + css + '</style>';
-    html += '</head><body>' + content;
-    html += '<script>window.onload=function(){window.print();window.onafterprint=function(){window.close();};};<\/script>';
-    html += '</body></html>';
-
-    win.document.write(html);
+    win.document.write('<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><title>كشف الدرجات — ' + studentName + '</title><style>' + css + '</style></head><body>' + content + '<script>window.onload=function(){window.print();window.onafterprint=function(){window.close();};};<\/script></body></html>');
     win.document.close();
 }
 
 window.addEventListener('resize', function() {
-    if (document.getElementById('reportOverlay').classList.contains('active')) {
-        scaleA4ToCanvas();
-    }
+    if (document.getElementById('reportOverlay').classList.contains('active')) scaleA4ToCanvas();
 });
 
-// ===== LOGOUT =====
 function logout(type) {
-    document.getElementById(type === 'student' ? 'studentDashboard' : 'adminDashboard').classList.remove('active');
-    document.body.style.overflow = '';
-    if (type === 'student') { document.getElementById('student-id-input').value = ''; document.getElementById('student-pass-input').value = ''; }
-}
-
-// ===== ADMIN FUNCTIONS =====
-function switchAdminTab(tab, btn) {
-    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-    document.getElementById('panel-' + tab).classList.add('active');
-}
-
-async function saveMarks() {
-    const studentId=document.getElementById('marks-studentId').value;
-    const subject=document.getElementById('marks-subject').value;
-    const score=parseInt(document.getElementById('marks-score').value);
-    const grade=document.getElementById('marks-grade').value;
-    const academicYear=document.getElementById('marks-year').value.trim();
-    const term=document.getElementById('marks-term').value;
-    const btn=document.getElementById('saveMarksBtn');
-    const successEl=document.getElementById('marks-success'), errorEl=document.getElementById('marks-error');
-    successEl.classList.remove('show'); errorEl.classList.remove('show');
-    if (!studentId||!subject||isNaN(score)||!grade||!academicYear||!term) { errorEl.textContent='يرجى ملء جميع الحقول المطلوبة'; errorEl.classList.add('show'); return; }
-    btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
-    try {
-        const res=await fetch('/api/add-marks',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({studentId,subject,score,grade,academicYear,term})});
-        const data=await res.json();
-        if (data.success) { successEl.classList.add('show'); document.getElementById('marks-score').value=''; document.getElementById('marks-grade').value=''; }
-        else { errorEl.textContent=data.error||'حدث خطأ'; errorEl.classList.add('show'); }
-    } catch(err) { errorEl.textContent='خطأ في الاتصال'; errorEl.classList.add('show'); }
-    btn.disabled=false; btn.innerHTML='<i class="fas fa-save"></i> حفظ النتيجة';
-}
-
-async function saveStudent() {
-    const studentId=document.getElementById('new-studentId').value.trim();
-    const fullName=document.getElementById('new-fullName').value.trim();
-    const password=document.getElementById('new-password').value.trim();
-    const gradeLevel=document.getElementById('new-gradeLevel').value;
-    const className=document.getElementById('new-className').value;
-    const btn=document.getElementById('saveStudentBtn');
-    const successEl=document.getElementById('student-success'), errorEl=document.getElementById('student-error');
-    successEl.classList.remove('show'); errorEl.classList.remove('show');
-    if (!studentId||!fullName||!password) { errorEl.textContent='يرجى ملء جميع الحقول المطلوبة'; errorEl.classList.add('show'); return; }
-    btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الإضافة...';
-    try {
-        const res=await fetch('/api/add-student',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({studentId,fullName,password,gradeLevel:parseInt(gradeLevel),className})});
-        const data=await res.json();
-        if (data.success) { successEl.textContent='تم إضافة الطالب '+fullName+' بنجاح!'; successEl.classList.add('show'); document.getElementById('new-studentId').value=''; document.getElementById('new-fullName').value=''; document.getElementById('new-password').value=''; }
-        else { errorEl.textContent=data.error||'حدث خطأ'; errorEl.classList.add('show'); }
-    } catch(err) { errorEl.textContent='خطأ في الاتصال'; errorEl.classList.add('show'); }
-    btn.disabled=false; btn.innerHTML='<i class="fas fa-user-plus"></i> إضافة الطالب';
-}
-
-let allStudentsData = [];
-async function loadAllStudents() {
-    const tbody = document.getElementById('allStudentsBody');
-    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;"><i class="fas fa-spinner fa-spin" style="color:var(--primary-accent);font-size:1.5rem;"></i></td></tr>';
-    try {
-        const res = await fetch('/api/get-all-students');
-        const data = await res.json();
-        if (data.success) {
-            allStudentsData = data.students;
-            document.getElementById('students-count').innerHTML = '<i class="fas fa-users"></i> إجمالي الطلاب: ' + data.students.length;
-            renderStudentsTable(data.students);
-        } else { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;color:#c0392b;">فشل تحميل البيانات</td></tr>'; }
-    } catch(err) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;color:#c0392b;">خطأ في الاتصال</td></tr>'; }
-}
-
-function renderStudentsTable(students) {
-    const tbody = document.getElementById('allStudentsBody');
-    if (!students.length) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;color:#999;">لا يوجد طلاب</td></tr>'; return; }
-    const gradeNames = {'10':'الصف العاشر','11':'الصف الحادي عشر','12':'الصف الثاني عشر'};
-    tbody.innerHTML = students.map((s,i) => '<tr><td>'+(i+1)+'</td><td style="font-weight:700;color:var(--islamic-green);">'+s.student_id+'</td><td>'+s.full_name+'</td><td>'+(gradeNames[String(s.grade_level)]||s.grade_level)+'</td><td style="font-weight:700;">'+(s.class_name||'-')+'</td></tr>').join('');
-}
-
-function filterStudentsTable() {
-    const q = document.getElementById('students-search').value.toLowerCase();
-    const grade = document.getElementById('as-grade-filter').value;
-    const cls = document.getElementById('as-class-filter').value;
-    let filtered = allStudentsData;
-    if (grade) filtered = filtered.filter(s => String(s.grade_level) === grade);
-    if (cls) filtered = filtered.filter(s => s.class_name === cls);
-    if (q) filtered = filtered.filter(s => s.student_id.toLowerCase().includes(q) || s.full_name.toLowerCase().includes(q));
-    document.getElementById('students-count').innerHTML = '<i class="fas fa-users"></i> عدد الطلاب: ' + filtered.length;
-    renderStudentsTable(filtered);
-}
-
-let cachedStudentsForMarks = [];
-async function filterStudentsByGradeClass() {
-    const grade = document.getElementById('marks-grade-filter').value;
-    const cls = document.getElementById('marks-class-filter').value;
-    const select = document.getElementById('marks-studentId');
-    if (!grade || !cls) { select.innerHTML = '<option value="">-- اختر الصف والفصل أولاً --</option>'; return; }
-    select.innerHTML = '<option value="">جاري التحميل...</option>';
-    try {
-        if (!cachedStudentsForMarks.length) {
-            const res = await fetch('/api/get-all-students');
-            const data = await res.json();
-            cachedStudentsForMarks = data.success ? data.students : [];
-        }
-        const filtered = cachedStudentsForMarks.filter(s => String(s.grade_level) === grade && s.class_name === cls);
-        select.innerHTML = filtered.length ? '<option value="">-- اختر الطالب --</option>' + filtered.map(s => '<option value="'+s.student_id+'">'+s.student_id+' - '+s.full_name+'</option>').join('') : '<option value="">لا يوجد طلاب في هذا الفصل</option>';
-    } catch(err) { select.innerHTML = '<option value="">خطأ في التحميل</option>'; }
-}
-
-async function updateStudent() {
-    const studentId=document.getElementById('update-studentId').value.trim();
-    const fullName=document.getElementById('update-fullName').value.trim()||undefined;
-    const gradeLevel=document.getElementById('update-gradeLevel').value||undefined;
-    const className=document.getElementById('update-className').value||undefined;
-    const btn=document.getElementById('updateStudentBtn');
-    const successEl=document.getElementById('update-success'), errorEl=document.getElementById('update-error');
-    successEl.classList.remove('show'); errorEl.classList.remove('show');
-    if (!studentId) { errorEl.textContent='يرجى إدخال رقم الطالب'; errorEl.classList.add('show'); return; }
-    if (!fullName && !gradeLevel && !className) { errorEl.textContent='يرجى تعديل حقل واحد على الأقل'; errorEl.classList.add('show'); return; }
-    btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
-    try {
-        const body={studentId};
-        if (fullName) body.fullName=fullName;
-        if (gradeLevel) body.gradeLevel=parseInt(gradeLevel);
-        if (className) body.className=className;
-        const res=await fetch('/api/update-student',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-        const data=await res.json();
-        if (data.success) { successEl.textContent='✅ تم تحديث بيانات الطالب بنجاح!'; successEl.classList.add('show'); document.getElementById('update-studentId').value=''; document.getElementById('update-fullName').value=''; document.getElementById('update-gradeLevel').value=''; document.getElementById('update-className').value=''; }
-        else { errorEl.textContent=data.error||'حدث خطأ'; errorEl.classList.add('show'); }
-    } catch(err) { errorEl.textContent='خطأ في الاتصال'; errorEl.classList.add('show'); }
-    btn.disabled=false; btn.innerHTML='<i class="fas fa-save"></i> حفظ التعديلات';
-}
-
-async function deleteStudent() {
-    const studentId=document.getElementById('delete-studentId').value.trim();
-    const btn=document.getElementById('deleteStudentBtn');
-    const successEl=document.getElementById('delete-student-success'), errorEl=document.getElementById('delete-student-error');
-    successEl.classList.remove('show'); errorEl.classList.remove('show');
-    if (!studentId) { errorEl.textContent='يرجى إدخال رقم الطالب'; errorEl.classList.add('show'); return; }
-    if (!confirm('هل أنت متأكد من حذف الطالب '+studentId+'؟')) return;
-    btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الحذف...';
-    try {
-        const res=await fetch('/api/delete-student',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({studentId})});
-        const data=await res.json();
-        if (data.success) { successEl.textContent='✅ تم حذف الطالب '+studentId+' بنجاح!'; successEl.classList.add('show'); document.getElementById('delete-studentId').value=''; }
-        else { errorEl.textContent=data.error||'حدث خطأ'; errorEl.classList.add('show'); }
-    } catch(err) { errorEl.textContent='خطأ في الاتصال'; errorEl.classList.add('show'); }
-    btn.disabled=false; btn.innerHTML='<i class="fas fa-trash-alt"></i> حذف الطالب نهائياً';
-}
-
-let allResultsData = [];
-async function loadAllResults() {
-    const tbody=document.getElementById('allResultsBody');
-    const grade=document.getElementById('filter-grade').value;
-    const cls=document.getElementById('filter-class').value;
-    const year=document.getElementById('filter-year').value.trim();
-    const term=document.getElementById('filter-term').value;
-    tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:2rem;"><i class="fas fa-spinner fa-spin" style="color:var(--primary-accent);font-size:1.5rem;"></i></td></tr>';
-    const params=[];
-    if (year) params.push('academicYear='+encodeURIComponent(year));
-    if (term) params.push('term='+encodeURIComponent(term));
-    if (grade) params.push('gradeLevel='+encodeURIComponent(grade));
-    if (cls) params.push('className='+encodeURIComponent(cls));
-    const url='/api/get-all-results'+(params.length?'?'+params.join('&'):'');
-    try {
-        const res=await fetch(url);
-        const data=await res.json();
-        if (data.success) { allResultsData=data.results; document.getElementById('results-count').innerHTML='<i class="fas fa-list"></i> إجمالي النتائج: '+data.results.length; renderResultsTable(data.results); }
-        else { tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:2rem;color:#c0392b;">فشل تحميل البيانات</td></tr>'; }
-    } catch(err) { tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:2rem;color:#c0392b;">خطأ في الاتصال</td></tr>'; }
-}
-
-function renderResultsTable(results) {
-    const tbody=document.getElementById('allResultsBody');
-    if (!results.length) { tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:2rem;color:#999;">لا توجد نتائج</td></tr>'; return; }
-    const gc={'A':'#d4edda','B':'#cce5ff','C':'#fff3cd','D':'#f8d7da','F':'#f8d7da'};
-    const gn={'10':'العاشر','11':'الحادي عشر','12':'الثاني عشر'};
-    tbody.innerHTML=results.map((r,i)=>'<tr><td>'+(i+1)+'</td><td style="font-weight:700;color:var(--islamic-green);">'+r.student_id+'</td><td>'+r.full_name+'</td><td>'+(gn[String(r.grade_level)]||'-')+'</td><td>'+(r.class_name||'-')+'</td><td>'+r.subject+'</td><td style="font-weight:700;">'+(r.score??'-')+'</td><td><span style="background:'+(gc[r.grade]||'#eee')+';padding:0.2rem 0.6rem;border-radius:20px;font-weight:700;font-size:0.85rem;">'+(r.grade||'-')+'</span></td><td>'+(r.term||'-')+'</td><td>'+(r.academic_year||'-')+'</td></tr>').join('');
-}
-
-function filterResultsTable() {
-    const q=document.getElementById('results-search').value.toLowerCase();
-    renderResultsTable(allResultsData.filter(r=>r.student_id.toLowerCase().includes(q)||r.full_name.toLowerCase().includes(q)||r.subject.toLowerCase().includes(q)));
-}
-
-async function deleteResults() {
-    const studentId=document.getElementById('del-res-studentId').value.trim();
-    const subject=document.getElementById('del-res-subject').value;
-    const academicYear=document.getElementById('del-res-year').value.trim();
-    const term=document.getElementById('del-res-term').value;
-    const btn=document.getElementById('deleteResultsBtn');
-    const successEl=document.getElementById('del-res-success'), errorEl=document.getElementById('del-res-error');
-    successEl.classList.remove('show'); errorEl.classList.remove('show');
-    if (!studentId) { errorEl.textContent='يرجى إدخال رقم الطالب'; errorEl.classList.add('show'); return; }
-    if (subject && (!academicYear||!term)) { errorEl.textContent='يرجى تحديد العام والفصل'; errorEl.classList.add('show'); return; }
-    if (!confirm(subject?'حذف نتيجة '+subject+' للطالب '+studentId+'؟':'حذف جميع نتائج الطالب '+studentId+'؟')) return;
-    btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الحذف...';
-    try {
-        const body={studentId};
-        if (subject) { body.subject=subject; body.academicYear=academicYear; body.term=term; }
-        const res=await fetch('/api/delete-results',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-        const data=await res.json();
-        if (data.success) { successEl.textContent='✅ تم حذف النتائج بنجاح!'; successEl.classList.add('show'); document.getElementById('del-res-studentId').value=''; document.getElementById('del-res-subject').value=''; document.getElementById('del-res-year').value=''; document.getElementById('del-res-term').value=''; }
-        else { errorEl.textContent=data.error||'حدث خطأ'; errorEl.classList.add('show'); }
-    } catch(err) { errorEl.textContent='خطأ في الاتصال'; errorEl.classList.add('show'); }
-    btn.disabled=false; btn.innerHTML='<i class="fas fa-trash-alt"></i> حذف النتائج';
-}
-
-async function resetPassword() {
-    const studentId=document.getElementById('reset-studentId').value.trim();
-    const newPassword=document.getElementById('reset-newPassword').value.trim();
-    const btn=document.getElementById('resetPasswordBtn');
-    const successEl=document.getElementById('reset-success'), errorEl=document.getElementById('reset-error');
-    successEl.classList.remove('show'); errorEl.classList.remove('show');
-    if (!studentId||!newPassword) { errorEl.textContent='يرجى إدخال رقم الطالب وكلمة المرور الجديدة'; errorEl.classList.add('show'); return; }
-    btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري التحديث...';
-    try {
-        const res=await fetch('/api/reset-password',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({studentId,newPassword})});
-        const data=await res.json();
-        if (data.success) { successEl.textContent='✅ تم تعيين كلمة مرور جديدة للطالب '+studentId+' بنجاح!'; successEl.classList.add('show'); document.getElementById('reset-studentId').value=''; document.getElementById('reset-newPassword').value=''; }
-        else { errorEl.textContent=data.error||'حدث خطأ'; errorEl.classList.add('show'); }
-    } catch(err) { errorEl.textContent='خطأ في الاتصال'; errorEl.classList.add('show'); }
-    btn.disabled=false; btn.innerHTML='<i class="fas fa-key"></i> تعيين كلمة المرور';
+    if (type === 'student') {
+        clearStudentToken();
+        document.getElementById('studentDashboard').classList.remove('active');
+        document.body.style.overflow = '';
+        document.getElementById('student-id-input').value   = '';
+        document.getElementById('student-pass-input').value = '';
+        currentStudentData   = null;
+        allStudentResults    = [];
+    }
 }
 
 document.getElementById('student-pass-input').addEventListener('keypress', function(e) { if (e.key === 'Enter') studentLogin(); });
@@ -1883,61 +1117,6 @@ function showInstallBanner() {
 function installPWA() { if (!deferredPrompt) return; deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; dismissBanner(); }); }
 function dismissBanner() { const b=document.getElementById('pwa-banner'); if(b) b.remove(); }
 window.addEventListener('appinstalled', ()=>{ dismissBanner(); deferredPrompt=null; });
-</script>
-
-<!-- ===== LOGIN SHAKE + LOCKOUT ===== -->
-<script>
-(function(){
-    var attempts = parseInt(localStorage.getItem('loginAttempts')||'0');
-    var lockUntil = parseInt(localStorage.getItem('lockUntil')||'0');
-
-    var origLogin = window.studentLogin;
-    window.studentLogin = async function(){
-        var now = Date.now();
-        var errorEl = document.getElementById('student-login-error');
-        var idInput = document.getElementById('student-id-input');
-        var passInput = document.getElementById('student-pass-input');
-
-        if (now < lockUntil) {
-            var mins = Math.ceil((lockUntil - now)/60000);
-            errorEl.textContent = 'تم قفل الدخول. حاول بعد ' + mins + ' دقيقة.';
-            errorEl.classList.add('show');
-            idInput.classList.add('shake');
-            passInput.classList.add('shake');
-            setTimeout(function(){ idInput.classList.remove('shake'); passInput.classList.remove('shake'); }, 500);
-            return;
-        }
-
-        await origLogin();
-
-        var isError = document.getElementById('student-login-error').classList.contains('show');
-        if (isError) {
-            attempts++;
-            localStorage.setItem('loginAttempts', attempts);
-            idInput.classList.add('shake');
-            passInput.classList.add('shake');
-            setTimeout(function(){
-                idInput.classList.remove('shake');
-                passInput.classList.remove('shake');
-                idInput.value = '';
-                passInput.value = '';
-                idInput.focus();
-            }, 500);
-            if (attempts >= 5) {
-                var until = Date.now() + 30*60*1000;
-                localStorage.setItem('lockUntil', until);
-                localStorage.setItem('loginAttempts', '0');
-                attempts = 0;
-                errorEl.textContent = 'محاولات كثيرة جداً! الرجاء المحاولة بعد 30 دقيقة.';
-                errorEl.classList.add('show');
-            }
-        } else {
-            localStorage.setItem('loginAttempts','0');
-            localStorage.setItem('lockUntil','0');
-            attempts = 0;
-        }
-    };
-})();
 </script>
 
 </body>
